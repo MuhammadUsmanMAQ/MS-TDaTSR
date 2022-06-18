@@ -10,3 +10,4 @@ panda
 matplotlib
 seaborn
 elementpath
+scikit-learn
