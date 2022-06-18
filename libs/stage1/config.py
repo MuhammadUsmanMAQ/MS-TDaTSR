@@ -15,7 +15,8 @@ epochs = 25
 batch_size = 2
 weight_decay = 3e-4
 
+base_dir = "DIR_TO_BE_CONFIGURED"
 """
     Path to Data Locating .csv
 """
-data_dir = "/content/drive/MyDrive/Colab Notebooks/Research/MS-TDaSR/datasets/stage1/locate.csv"
+data_dir = "DIR_TO_BE_CONFIGURED/datasets/stage1/locate.csv"

@@ -16,7 +16,7 @@ from utils import (
     write_summary, 
     compute_metrics,
     seed_all
-    )
+)
 
 from loss import TDLoss
 from sklearn.metrics import precision_score, recall_score, accuracy_score, f1_score
@@ -119,7 +119,7 @@ def test_on_epoch(data_loader, model, loss, threshold = 0.5, device = config.dev
 if __name__ == '__main__':
     
     seed_all(SEED_VALUE = config.seed)
-    checkpoint_name = '/content/drive/MyDrive/Colab Notebooks/Research/MS-TDaSR/models/model_stage1/resnet/s1_checkpoint.pth.tar'
+    checkpoint_name = 'DIR_TO_BE_CONFIGURED/models/stage1/CONFIGURE_MODEL/s1_checkpoint.pth.tar'
     model = TDModel(encoder = 'resnet-50', decoder = 'RNDecoder', use_pretrained_model = True, basemodel_requires_grad = True)
     
     print(colored("Model Architecture and Trainable Paramerters", 'green'))
@@ -155,7 +155,7 @@ if __name__ == '__main__':
     #Train Network
     print("Training Model\n")
     writer = SummaryWriter(
-            f"/content/drive/MyDrive/Colab Notebooks/Research/MS-TDaSR/models/model_stage1/resnet/bs_{config.batch_size}_lr_{config.lr}_train"
+            f"DIR_TO_BE_CONFIGURED/models/stage1/CONFIGURE_MODEL/bs_{config.batch_size}_lr_{config.lr}_train"
         )
 
     #for early stopping

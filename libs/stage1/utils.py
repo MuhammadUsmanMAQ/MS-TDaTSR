@@ -12,6 +12,10 @@ from sklearn.model_selection import train_test_split
 import albumentations as A 
 from albumentations.pytorch import ToTensorV2
 
+"""
+    Utility functions imported/edited from TabNet-pytorch Git repo
+    https://github.com/asagar60/TableNet-pytorch/blob/main/Training/utils.py
+"""
 TRANSFORM = A.Compose([
                 A.Normalize(
                     mean=[0.485, 0.456, 0.406],
@@ -86,7 +90,9 @@ def display_metrics(epoch, tr_metrics,te_metrics):
             Table Recall -- Train: {tr_metrics['table_recall']:.3f} Test: {te_metrics['table_recall']:.3f}{nl}\
         ")
 
-
+"""
+    Metrics to compare proposed model with well-performing models
+"""
 def compute_metrics(ground_truth, prediction, threshold = 0.5):
 
     ground_truth = ground_truth.int()
@@ -153,24 +159,16 @@ def fixMasks(image, table_mask):
     
     kernel = np.ones((5, 5), np.uint8)
     table_mask = cv2.erode(table_mask, kernel)
-
-    #get contours of the mask to get number of tables
     contours, table_heirarchy = cv2.findContours(table_mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
     
     table_contours = []
-    #remove bad contours
 
     for c in contours:
-        #if not is_contour_bad(c):
         if cv2.contourArea(c) > 2000:
             table_contours.append(c)
     
     if len(table_contours) == 0:
         return None
-
-    #ref : https://docs.opencv.org/4.5.2/da/d0c/tutorial_bounding_rects_circles.html
-    #get bounding box for the contour
-    
     table_boundRect = [None]*len(table_contours)
     for i, c in enumerate(table_contours):
         polygon = cv2.approxPolyDP(c, 3, True)
@@ -178,7 +176,6 @@ def fixMasks(image, table_mask):
     
     #table bounding Box
     table_boundRect.sort()
-    
     image = image[...,0].reshape(1024, 768).astype(np.uint8)
     
     #draw bounding boxes

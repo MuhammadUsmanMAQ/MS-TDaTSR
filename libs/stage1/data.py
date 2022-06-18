@@ -13,7 +13,7 @@ import albumentations as A
 from albumentations.pytorch import ToTensorV2
 import config   # Contatining vars relevant to the Dataloader
                           
-PATH = "/content/drive/MyDrive/Colab Notebooks/Research/MS-TDaSR/"
+PATH = "DIR_TO_BE_CONFIGURED"
 
 """
     Setting up the Dataset class in the way
