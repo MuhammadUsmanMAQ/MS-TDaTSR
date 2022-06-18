@@ -1,2 +1,5 @@
 *.docx
 *.drawio
+libs/stage1/__pycache__
+datasets/stage1/images
+datasets/stage1/table_mask

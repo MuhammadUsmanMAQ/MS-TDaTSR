@@ -1,0 +1,12 @@
+albumentations==0.4.6
+pytorch-model-summary
+torchinfo
+termcolor
+opencv-python==4.1.2.30
+glob2
+tqdm
+Pillow
+panda
+matplotlib
+seaborn
+elementpath
