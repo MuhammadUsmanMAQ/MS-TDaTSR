@@ -16,7 +16,7 @@ from utils import (
     write_summary, 
     compute_metrics,
     seed_all
-)
+    )
 
 from loss import TDLoss
 from sklearn.metrics import precision_score, recall_score, accuracy_score, f1_score
@@ -28,6 +28,10 @@ import sys
 import warnings
 warnings.filterwarnings("ignore")
 
+"""
+    Common train functions imported/edited from TabNet-pytorch Git repo
+    https://github.com/asagar60/TableNet-pytorch/blob/main/Training/train.py
+"""
 def train_on_epoch(data_loader, model, optimizer, loss, scaler, threshold = 0.5):
 
     combined_loss = []
@@ -119,8 +123,8 @@ def test_on_epoch(data_loader, model, loss, threshold = 0.5, device = config.dev
 if __name__ == '__main__':
     
     seed_all(SEED_VALUE = config.seed)
-    checkpoint_name = config.base_dir + 'models/stage_one/CONFIGURE_MODEL/s1_checkpoint.pth.tar'
-    model = TDModel(encoder = 'resnet-50', decoder = 'RNDecoder', use_pretrained_model = True, basemodel_requires_grad = True)
+    checkpoint_name = f'{config.base_dir}/models/stage_one/{config.encoder}_{config.decoder}/{config.run_id}_checkpoint.pth.tar'
+    model = TDModel(use_pretrained_model = True, basemodel_requires_grad = True)
     
     print(colored("Model Architecture and Trainable Paramerters", 'green'))
     print(colored("="*45, 'green'))
@@ -155,7 +159,7 @@ if __name__ == '__main__':
     #Train Network
     print("Training Model\n")
     writer = SummaryWriter(
-            f"{config.base_dir}/models/stage_one/CONFIGURE_MODEL/bs_{config.batch_size}_lr_{config.lr}_train"
+            f'{config.base_dir}/models/stage_one/{config.encoder}_{config.decoder}/{config.run_id}_train'
         )
 
     #for early stopping

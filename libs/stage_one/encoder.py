@@ -5,7 +5,6 @@
 import torch
 import torch.nn as nn
 import torchvision
-from efficientnet_pytorch import EfficientNet
 from torchinfo import summary
 
 from torchvision.models import convnext_tiny, convnext_small, convnext_base, convnext_large

@@ -4,6 +4,7 @@
     we import torch for torch.device()
 """
 import torch
+from datetime import datetime
 
 """ 
     Parameters for stage 1
@@ -14,9 +15,18 @@ lr = 0.0001
 epochs = 25
 batch_size = 2
 weight_decay = 3e-4
+base_dir = 'DIR_TO_BE_CONFIGURED'
+run_id = datetime.now().strftime('%Y_%m_%d_%H%M%S')
 
-base_dir = "DIR_TO_BE_CONFIGURED"
 """
-    Path to Data Locating .csv
+    Available Options:
+    Encoder: ResNet-50, ResNet-101, ConvNext-tiny, ConvNext-small, ConvNext-base, ConvNext-large
+    Decoder: CNDecoder, RNDecoder
 """
-data_dir = "DIR_TO_BE_CONFIGURED/datasets/stage1/locate.csv"
+encoder = 'ResNet-50'
+decoder = 'RNDecoder'
+
+"""
+    Base Directory to locate images/masks
+"""
+data_dir = f"{base_dir}/datasets/stage_one/locate.csv"

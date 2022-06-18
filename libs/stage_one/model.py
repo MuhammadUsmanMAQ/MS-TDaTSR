@@ -10,7 +10,7 @@ import config
     Model Definition
 """
 class TDModel(nn.Module):
-    def __init__(self, encoder = 'ConvNext-small', decoder = 'CNDecoder', use_pretrained_model = True, basemodel_requires_grad = True):
+    def __init__(self, encoder = config.encoder, decoder = config.decoder, use_pretrained_model = True, basemodel_requires_grad = True):
         super(TDModel, self).__init__()
         
         if (encoder == 'ConvNext-tiny' and decoder == 'CNDecoder'):
@@ -40,7 +40,7 @@ class TDModel(nn.Module):
             self.pool_channels = [1024, 512]
             self.table_decoder = CNDecoder(self.pool_channels, self.kernels, self.strides)
 
-        elif (encoder == 'resnet-50' and decoder == 'RNDecoder'):
+        elif (encoder == 'ResNet-50' and decoder == 'RNDecoder'):
             self.kernels = [(1,1), (2,2), (4,4), (8,8)]
             self.strides = [(1,1), (2,2), (4,4), (8,8)]
             self.in_channels = 256
@@ -49,7 +49,7 @@ class TDModel(nn.Module):
             self.pool_channels = [256, 256]
             self.table_decoder = RNDecoder(self.pool_channels, self.kernels, self.strides)
 
-        elif (encoder == 'resnet-101' and decoder == 'RNDecoder'):
+        elif (encoder == 'ResNet-101' and decoder == 'RNDecoder'):
             self.kernels = [(1,1), (2,2), (4,4), (8,8)]
             self.strides = [(1,1), (2,2), (4,4), (8,8)]
             self.in_channels = 256
@@ -79,6 +79,6 @@ class TDModel(nn.Module):
 
 if __name__ == '__main__':
     x = torch.randn(1, 3, 1024, 768)
-    model = TDModel(encoder = 'resnet-50', decoder = 'RNDecoder', use_pretrained_model = True, basemodel_requires_grad = True)
+    model = TDModel(use_pretrained_model = True, basemodel_requires_grad = True)
     model(x)
     summary(model, input_size= (config.batch_size, 3, 1024, 768))

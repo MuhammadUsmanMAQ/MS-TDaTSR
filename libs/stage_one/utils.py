@@ -151,7 +151,6 @@ def is_contour_bad(c):
     return not len(approx) == 4
 
 def fixMasks(image, table_mask):
-    
     """
     Fix Table Bounding Box to get better OCR predictions
     """

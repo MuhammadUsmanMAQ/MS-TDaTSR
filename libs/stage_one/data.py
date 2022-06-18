@@ -2,6 +2,7 @@
     Common library imports for training
         a model through pytorch 
 """
+import os
 import torch
 import torch.nn as nn
 import pandas as pd
@@ -12,8 +13,6 @@ from torch.utils.data import DataLoader
 import albumentations as A 
 from albumentations.pytorch import ToTensorV2
 import config   # Contatining vars relevant to the Dataloader
-                          
-PATH = "DIR_TO_BE_CONFIGURED"
 
 """
     Setting up the Dataset class in the way
@@ -41,8 +40,8 @@ class MarmotDataset(nn.Module):
 
     def __getitem__(self, index):
         img_path, table_mask_path = self.df.iloc[index, 0], self.df.iloc[index, 1]
-        image = np.array(Image.open(PATH + img_path))
-        table_mask = torch.FloatTensor(np.array(ImageOps.grayscale(Image.open(PATH + table_mask_path)))/255.0).reshape(1,1024,768)
+        image = np.array(Image.open(os.path.join(config.base_dir, img_path)))
+        table_mask = torch.FloatTensor(np.array(ImageOps.grayscale(Image.open(os.path.join(config.base_dir, table_mask_path))))/255.0).reshape(1,1024,768)
 
         image = self.transform(image = image)['image']
 
@@ -67,5 +66,4 @@ if __name__ == '__main__':
         
         # Helps in knowing that data is being loaded correctly
         print(image.shape)                  
-        print(table_image.shape)               
-
+        print(table_image.shape)
