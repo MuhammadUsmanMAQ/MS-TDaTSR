@@ -119,7 +119,7 @@ def test_on_epoch(data_loader, model, loss, threshold = 0.5, device = config.dev
 if __name__ == '__main__':
     
     seed_all(SEED_VALUE = config.seed)
-    checkpoint_name = 'DIR_TO_BE_CONFIGURED/models/stage1/CONFIGURE_MODEL/s1_checkpoint.pth.tar'
+    checkpoint_name = config.base_dir + 'models/stage_one/CONFIGURE_MODEL/s1_checkpoint.pth.tar'
     model = TDModel(encoder = 'resnet-50', decoder = 'RNDecoder', use_pretrained_model = True, basemodel_requires_grad = True)
     
     print(colored("Model Architecture and Trainable Paramerters", 'green'))
@@ -155,7 +155,7 @@ if __name__ == '__main__':
     #Train Network
     print("Training Model\n")
     writer = SummaryWriter(
-            f"DIR_TO_BE_CONFIGURED/models/stage1/CONFIGURE_MODEL/bs_{config.batch_size}_lr_{config.lr}_train"
+            f"{config.base_dir}/models/stage_one/CONFIGURE_MODEL/bs_{config.batch_size}_lr_{config.lr}_train"
         )
 
     #for early stopping
