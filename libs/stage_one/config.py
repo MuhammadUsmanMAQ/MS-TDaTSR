@@ -1,4 +1,3 @@
-
 """ 
     To check if a GPU is available
     we import torch for torch.device()
@@ -15,7 +14,7 @@ lr = 0.0001
 epochs = 25
 batch_size = 2
 weight_decay = 3e-4
-base_dir = 'DIR_TO_BE_CONFIGURED'
+base_dir = "/content/drive/MyDrive/Colab Notebooks/Research/MS-TDaSR"
 run_id = datetime.now().strftime('%Y_%m_%d_%H%M%S')
 
 """
@@ -23,7 +22,7 @@ run_id = datetime.now().strftime('%Y_%m_%d_%H%M%S')
     Encoder: ResNet-50, ResNet-101, ConvNext-tiny, ConvNext-small, ConvNext-base, ConvNext-large
     Decoder: CNDecoder, RNDecoder
 """
-encoder = 'ResNet-50'
+encoder = 'ResNet-101'
 decoder = 'RNDecoder'
 
 """

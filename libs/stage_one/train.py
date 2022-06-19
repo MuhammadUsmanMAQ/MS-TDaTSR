@@ -76,7 +76,7 @@ def train_on_epoch(data_loader, model, optimizer, loss, scaler, threshold = 0.5)
     return metrics
 
 
-def test_on_epoch(data_loader, model, loss, threshold = 0.5, device = config.device):
+def test_on_epoch(data_loader, model, loss, threshold = 0.5):
 
     combined_loss = []
     table_loss, table_acc, table_precision, table_recall, table_f1 = [],[],[],[],[]
@@ -86,8 +86,11 @@ def test_on_epoch(data_loader, model, loss, threshold = 0.5, device = config.dev
         loop = tqdm(data_loader, leave=True)
     
         for batch_idx, img_dict in enumerate(loop):
-            image           = img_dict["image"].to(device)
-            table_image     = img_dict["table_mask"].to(device)
+            image           = img_dict["image"].to(config.device)
+            table_image     = img_dict["table_mask"].to(config.device)
+            
+            image = image.float()
+            table_image = table_image.float()
 
             with torch.cuda.amp.autocast():
                 table_out  = model(image)
@@ -106,7 +109,6 @@ def test_on_epoch(data_loader, model, loss, threshold = 0.5, device = config.dev
             table_recall.append(cal_metrics_table['recall'])        
 
     metrics = {
-        'combined_loss': np.mean(combined_loss),
         'table_loss': np.mean(table_loss),
         'table_f1': np.mean(table_f1),
         'table_precision': np.mean(table_precision),

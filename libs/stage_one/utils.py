@@ -60,6 +60,8 @@ def load_checkpoint(checkpoint, model, optimizer = None):
     last_epoch = checkpoint['epoch']
     tr_metrics = checkpoint['train_metrics']
     te_metrics = checkpoint['test_metrics']
+    print("Model loaded successfully.\n")
+    
     return last_epoch, tr_metrics, te_metrics
 
 def write_summary(writer, tr_metrics, te_metrics, epoch):
