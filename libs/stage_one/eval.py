@@ -12,6 +12,7 @@ from utils import (
 import argparse
 import torch
 import csv
+import os
 
 """
     Evaluate Model
@@ -46,6 +47,8 @@ if __name__ == '__main__':
     data_dir = str(args.data_dir)
     output_dir = str(args.output_dir)
 
+    os.makedirs(output_dir, exist_ok = True) # Create output directory
+
     data = evaluate_model(saved_model, data_dir)
     r_data = dict()
 
@@ -58,6 +61,6 @@ if __name__ == '__main__':
     up_dict.update(r_data)
 
     # Write .csv file
-    w = csv.writer(open(f"{output_dir}/metrics.csv", "w"))
+    w = csv.writer(open(os.path.join(output_dir, "metrics.csv"), "w"))
     for key, val in up_dict.items():
         w.writerow([key, val])
