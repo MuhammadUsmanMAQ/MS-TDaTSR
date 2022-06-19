@@ -7,7 +7,44 @@ Begin with installing required packages.<br/>*It is better to create a new envir
 ```
 pip install -r requirements.txt
 ```
-- **For Stage 1**
-1. Configure **_DIR_TO_BE_CONFIGURED_** in `config.py, data.py, train.py` and execute the scripts.
-2. Configure **_TEST_DIR_** and **_OUTPUT_DIR_** in eval.py to get metrics and output image masks/bounding boxes.
-3. To make changes to the model _(i.e. changing the encoder, using ConvNeXt instead of ResNet, etc.)_, configure the respective files in `libs` directory.
+## Usage
+To get started, either clone this repo or arrange your working directory as:
+```
+MS-TDaSR/
+├── datasets
+│   └── stage_one
+│       ├── images/..
+│       ├── table_mask/..
+│       └── locate.csv
+├── libs
+│   └── stage_one
+│       ├── config.py
+│       ├── data.py
+│       ├── decoder.py
+│       ├── encoder.py
+│       ├── eval.py
+│       ├── loss.py
+│       ├── model.py
+│       ├── train.py
+│       └── utils.py
+├── models
+│   └── stage_one
+│       ├── EfficientNet-B4-Decoder/..
+│       ├── ResNet-101_RNDecoder/..
+│       └── /...
+├── outputs
+│   └── stage_one
+│       └── metrics.csv
+└── requirements.txt
+```
+- **Stage 1**
+1. Configure `base_dir` and `data_dir` in `config.py` and run `data.py` to ensure data is being loaded correctly.
+2. To make changes to the model _(i.e. changing the encoder, using ConvNeXt instead of ResNet, etc.)_, configure `encoder/decoder` in `config.py`.
+3. To train the model, configure the training hyperparameters in `config.py` and run `train.py`.
+4. To evaluate the model on a test dataset, use the script `eval.py` with the required position arguments.
+Example usage:
+```
+python eval.py --output_dir "{output_dir}" \
+               --model_dir "{config.base_dir}/models/stage_one/{config.encoder}_{config.decoder}/{model_name}.pth.tar" \
+               --data_dir "{config.data_dir}"
+```
