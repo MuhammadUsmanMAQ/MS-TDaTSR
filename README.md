@@ -44,7 +44,7 @@ MS-TDaSR/
 4. To evaluate the model on a test dataset, use the script `eval.py` with the required position arguments.
 Example usage:
 ```
-python eval.py --output_dir "{output_dir}" \
+python eval.py --output_dir "{config.base_dir}/outputs/stage_one/{config.encoder}_{config.decoder}" \
                --model_dir "{config.base_dir}/models/stage_one/{config.encoder}_{config.decoder}/{model_name}.pth.tar" \
                --data_dir "{config.data_dir}"
 ```
