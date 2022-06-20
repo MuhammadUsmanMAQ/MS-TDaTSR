@@ -18,7 +18,6 @@ import os
 """
     Evaluate Model
 """
-
 def evaluate_model(saved_model, data_dir):
     model = TDModel(use_pretrained_model = True, basemodel_requires_grad = True)
     model = model.to(config.device)
