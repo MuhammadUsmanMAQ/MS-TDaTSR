@@ -3,7 +3,7 @@
 We propose a multi-staged pipeline approach to tackle the issue of detection of tables as well as their structure within scanned document images, on the basis that the fundamental structure of bordered and borderless tables is vastly different and hence, training a single pipeline model to discern the structure of both borderless and bordered tables yields poor performance.
 
 ## Installation / Custom Runs
-Begin with installing required packages.<br/>*It is better to create a new environment so that this repo does not interfere with other projects.*
+Install the required dependencies.<br/>*It is better to create a new virtual environment so that updates/downgrades of packages do not break other projects.*
 ```
 pip install -r requirements.txt
 ```
