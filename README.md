@@ -41,10 +41,17 @@ MS-TDaSR/
 1. Configure `base_dir` and `data_dir` in `config.py` and run `data.py` to ensure data is being loaded correctly.
 2. To make changes to the model _(i.e. changing the encoder, using ConvNeXt instead of ResNet, etc.)_, configure `encoder/decoder` in `config.py`.
 3. To train the model, configure the training hyperparameters in `config.py` and run `train.py`.
-4. To evaluate the model on a test dataset, use the script `eval.py` with the required position arguments.
+4. To evaluate the model on a test dataset, use the script `eval.py` with the required positional arguments.
 Example usage:
 ```
 python eval.py --output_dir "{config.base_dir}/outputs/stage_one/{config.encoder}_{config.decoder}" \
                --model_dir "{config.base_dir}/models/stage_one/{config.encoder}_{config.decoder}/{model_name}.pth.tar" \
                --data_dir "{config.data_dir}"
+```
+5. To get model predictions for a single input image, use the script `inference.py` with the required positional arguments. Example usage:
+```
+python inference.py --input_img "{path_to_input}" \
+                    --gt_dir "{path_to_gt}" \ # Optional
+                    --model_dir "{config.base_dir}/models/stage_one/{config.encoder}_{config.decoder}/{model_name}.pth.tar" \
+                    --output_dir "{config.base_dir}/outputs/stage_one/{config.encoder}_{config.decoder}"
 ```
