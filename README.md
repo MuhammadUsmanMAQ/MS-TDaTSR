@@ -2,6 +2,9 @@
 ## Mutli-Stage - Table Detection and Table Structure Recognition
 We propose a multi-staged pipeline approach to tackle the issue of detection of tables as well as their structure within scanned document images, on the basis that the fundamental structure of bordered and borderless tables is vastly different and hence, training a single pipeline model to discern the structure of both borderless and bordered tables yields poor performance.
 
+## Dataset
+You can download and unpack the required dataset (with image masks) into `datasets/stage_one` through the following link: [Marmot Dataset](https://drive.google.com/file/d/1-7cBtAraIa0e8c6kMFDPmlAlKOPOBccd/view?usp=sharing) 
+
 ## Installation / Custom Runs
 Install the required dependencies.<br/>*It is better to create a new virtual environment so that updates/downgrades of packages do not break other projects.*
 ```
