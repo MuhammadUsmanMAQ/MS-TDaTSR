@@ -65,7 +65,6 @@ def train_on_epoch(data_loader, model, optimizer, loss, scaler, threshold = 0.5)
         table_recall.append(cal_metrics_table['recall'])
 
         metrics = {
-        'combined_loss': np.mean(combined_loss),
         'table_loss': np.mean(table_loss),
         'table_f1': np.mean(table_f1),
         'table_precision': np.mean(table_precision),
@@ -133,7 +132,7 @@ if __name__ == '__main__':
     print(colored(summary(model, torch.zeros((1, 3, 1024, 768)), show_input=False, show_hierarchical=True), 'green'))
 
     model = model.to(config.device)
-    optimizer = optim.Adam(
+    optimizer = optim.NAdam(
         model.parameters(),
         lr = config.lr,
         weight_decay = config.weight_decay,
