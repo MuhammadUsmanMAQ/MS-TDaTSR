@@ -65,7 +65,6 @@ def load_checkpoint(checkpoint, model, optimizer = None):
     return last_epoch, tr_metrics, te_metrics
 
 def write_summary(writer, tr_metrics, te_metrics, epoch):
-
     writer.add_scalar("Table loss/Train", tr_metrics['table_loss'], global_step=epoch)
     writer.add_scalar("Table loss/Test", te_metrics['table_loss'], global_step=epoch)
     
@@ -81,7 +80,7 @@ def write_summary(writer, tr_metrics, te_metrics, epoch):
     writer.add_scalar("Table Recall/Train", tr_metrics['table_recall'], global_step=epoch)
     writer.add_scalar("Table Recall/Test", te_metrics['table_recall'], global_step=epoch)
 
-def display_metrics(epoch, tr_metrics,te_metrics):
+def display_metrics(epoch, tr_metrics, te_metrics):
     nl = '\n'
 
     print(f"Epoch: {epoch} {nl}\
@@ -96,7 +95,6 @@ def display_metrics(epoch, tr_metrics,te_metrics):
     Metrics to compare proposed model with well-performing models
 """
 def compute_metrics(ground_truth, prediction, threshold = 0.5):
-
     ground_truth = ground_truth.int()
     prediction = (torch.sigmoid(prediction) > threshold).int()
     
@@ -120,7 +118,6 @@ def compute_metrics(ground_truth, prediction, threshold = 0.5):
     return metrics
     
 def display(img, table, title = 'Original'):
-    n = np.random.randint(4545, 9898)
     f, ax  = plt.subplots(1,2, figsize = (20,20))
     ax[0].imshow(img)
     ax[0].set_title(f'{title} Image')
@@ -128,9 +125,19 @@ def display(img, table, title = 'Original'):
     ax[1].set_title(f'{title} Table Mask')
     plt.show()
 
-def get_TableMasks(test_img, model, transform = TRANSFORM, device = config.device):
-    
+def save_fig(img, table, out, save_id, n, title = 'Original'):
+    name = str(f"fig_{n}.png")
+    out_dir = os.path.join(out, name)
 
+    f, ax  = plt.subplots(1, 2, figsize = (20,20))
+    ax[0].imshow(img)
+    ax[0].set_title(f'{title} Image')
+    ax[1].imshow(table)
+    ax[1].set_title(f'{title} Table Mask')
+
+    plt.savefig(out_dir, bbox_inches='tight')
+
+def get_TableMasks(test_img, model, transform = TRANSFORM, device = config.device):
     image = transform(image = test_img)["image"]
     #get predictions
     model.eval()
@@ -153,9 +160,6 @@ def is_contour_bad(c):
     return not len(approx) == 4
 
 def fixMasks(image, table_mask):
-    """
-    Fix Table Bounding Box to get better OCR predictions
-    """
     table_mask = table_mask.reshape(1024, 768).astype(np.uint8)
     
     kernel = np.ones((5, 5), np.uint8)

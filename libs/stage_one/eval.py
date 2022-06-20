@@ -9,6 +9,7 @@ from utils import (
     load_checkpoint
 )
 
+import json
 import argparse
 import torch
 import csv
@@ -17,14 +18,15 @@ import os
 """
     Evaluate Model
 """
+
 def evaluate_model(saved_model, data_dir):
     model = TDModel(use_pretrained_model = True, basemodel_requires_grad = True)
-    model = model.cuda()
+    model = model.to(config.device)
     model = model.float()   # Convert from float16 to float32
     last_epoch, tr_metrics, te_metrics = load_checkpoint(torch.load(saved_model, map_location = config.device), model)
 
     _, test_loader = get_data_loaders(data_dir)
-    metrics = test_on_epoch(test_loader, model, TDLoss(), threshold = 0.5)
+    metrics = test_on_epoch(test_loader, model, TDLoss(), threshold = 0.6)
 
     return metrics
 
