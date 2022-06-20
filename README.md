@@ -12,7 +12,7 @@ pip install -r requirements.txt
 ```
 ## Models
 Download pretrained model weights through the following table. _More models are added as soon as they are trained/tested._ The evaluation metrics are done on the Marmot test data, provided in [Dataset](#dataset)
-| Model | Description | F1-Score | Precision | Recall
+| Model | Weights | F1-Score | Precision | Recall |
 | :---: | :---: | :---: | :---: | :---: |
 | ConvNeXt-Small-CNDecoder | | | | |
 | ResNet-50-RNDecoder | [Download Link](https://drive.google.com/file/d/10dDEYHu9vKdcOTypSGVYBjjQ2FmGqY6A/view?usp=sharing) | 0.942 | 0.939 | 0.953 |
