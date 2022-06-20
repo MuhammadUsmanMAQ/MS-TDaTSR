@@ -1,5 +1,3 @@
 *.docx
 *.drawio
 libs/stage_one/__pycache__
-datasets/stage_one/images
-datasets/stage_one/table_mask
