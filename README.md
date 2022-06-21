@@ -14,12 +14,12 @@ pip install -r requirements.txt
 ```
 ## Models
 Download pretrained model weights through the following tables. _More models are added as soon as they are trained/tested._
-<br/><br/>**Trained on Marmot Dataset**
+### **Trained on Marmot Dataset**
 | Model | Weights | F1-Score | Precision | Recall |
 | :---: | :---: | :---: | :---: | :---: |
 | | | | | |
 
-**Trained on cTDaR Dataset**
+### **Trained on cTDaR Dataset**
 
 | Model | Weights | F1-Score | Precision | Recall |
 | :---: | :---: | :---: | :---: | :---: |
