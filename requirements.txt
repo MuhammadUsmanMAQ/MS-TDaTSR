@@ -1,3 +1,4 @@
+segmentation-models-pytorch
 albumentations==0.4.6
 pytorch-model-summary==0.1.2
 torchinfo==1.7.0

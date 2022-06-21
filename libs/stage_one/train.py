@@ -23,7 +23,7 @@ from sklearn.metrics import precision_score, recall_score, accuracy_score, f1_sc
 from model import TDModel
 from torch.utils.tensorboard import SummaryWriter
 from pytorch_model_summary import summary
-
+import argparse
 import sys
 import warnings
 warnings.filterwarnings("ignore")
@@ -122,9 +122,17 @@ def test_on_epoch(data_loader, model, loss, threshold = 0.5):
     Configure for Model Params/Architecture
 """
 if __name__ == '__main__':
-    
+    parser = argparse.ArgumentParser(description = 'Evaluation Metrics')
+    parser.add_argument("--resume", help = "Resume training a model.", required = False)
+    args = parser.parse_args()
+
     seed_all(SEED_VALUE = config.seed)
-    checkpoint_name = f'{config.base_dir}/models/stage_one/{config.encoder}_{config.decoder}/{config.run_id}_checkpoint.pth.tar'
+    
+    if args.resume is not None:
+        checkpoint_name = str(args.resume)
+    else:
+        checkpoint_name = f'{config.base_dir}/models/stage_one/{config.encoder}_{config.decoder}/{config.run_id}_checkpoint.pth.tar'
+    
     model = TDModel(use_pretrained_model = True, basemodel_requires_grad = True)
     
     print(colored("Model Architecture and Trainable Paramerters", 'green'))
@@ -132,10 +140,11 @@ if __name__ == '__main__':
     print(colored(summary(model, torch.zeros((1, 3, 1024, 768)), show_input=False, show_hierarchical=True), 'green'))
 
     model = model.to(config.device)
-    optimizer = optim.NAdam(
+    optimizer = optim.AdamW(
         model.parameters(),
         lr = config.lr,
         weight_decay = config.weight_decay,
+        amsgrad = True
         )
 
     loss = TDLoss()
