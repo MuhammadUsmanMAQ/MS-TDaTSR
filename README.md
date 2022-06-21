@@ -6,7 +6,8 @@ We propose a multi-staged pipeline approach to tackle the issue of detection of 
 You can download and unpack the required dataset (with image masks) into `datasets/stage_one` through the following link: [Marmot Dataset](https://drive.google.com/file/d/1-7cBtAraIa0e8c6kMFDPmlAlKOPOBccd/view?usp=sharing) 
 
 ## Installation / Custom Runs
-Install the required dependencies.<br/>*It is better to create a new virtual environment so that updates/downgrades of packages do not break other projects.*
+Install the required dependencies.<br/>Environment characteristics: `python = 3.9.0` `torch = 1.10.0` `torchvision = 0.11.0` `torchaudio = 0.10.0`
+<br/>*It is better to create a new virtual environment so that updates/downgrades of packages do not break other projects.*
 ```
 pip install -r requirements.txt
 ```
