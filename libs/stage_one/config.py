@@ -28,4 +28,4 @@ decoder = 'RNDecoder'
 """
     Base Directory to locate images/masks
 """
-data_dir = f"{base_dir}/datasets/stage_one/locate.csv"
+data_dir = f"{base_dir}/datasets/stage_one/marmot/locate.csv"

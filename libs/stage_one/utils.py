@@ -6,7 +6,7 @@ import pandas as pd
 import config
 import cv2
 import matplotlib.pyplot as plt
-from data import MarmotDataset
+from data import Dataset
 from torch.utils.data import DataLoader
 from sklearn.model_selection import train_test_split
 import albumentations as A 
@@ -39,8 +39,8 @@ def get_data_loaders(data_path = config.data_dir):
     df = pd.read_csv(data_path)
     train_data, test_data  = train_test_split(df, test_size = 0.2, random_state = config.seed)
 
-    train_dataset = MarmotDataset(train_data, isTrain = True, transform = None)
-    test_dataset = MarmotDataset(test_data, isTrain = False, transform = None)
+    train_dataset = Dataset(train_data, isTrain = True, transform = None)
+    test_dataset = Dataset(test_data, isTrain = False, transform = None)
 
     train_loader =  DataLoader(train_dataset, batch_size = config.batch_size, shuffle=True, num_workers = 4, pin_memory=True)
     test_loader =  DataLoader(test_dataset, batch_size = config.batch_size, shuffle=False, num_workers = 4, pin_memory=True)

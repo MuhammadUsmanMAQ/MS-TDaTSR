@@ -19,9 +19,9 @@ import config   # Contatining vars relevant to the Dataloader
         as per instructed in pytorch 
                 documentation
 """
-class MarmotDataset(nn.Module):
+class Dataset(nn.Module):
     def __init__(self, df, isTrain = True, transform = None):
-        super(MarmotDataset, self).__init__()
+        super(Dataset, self).__init__()
         self.df = df
 
             # Normalizing the dataset
@@ -58,7 +58,7 @@ if __name__ == '__main__':
     df = pd.read_csv(config.data_dir)
     train_data, test_data  = train_test_split(df, test_size = 0.2, random_state = config.seed)
 
-    dataset = MarmotDataset(train_data)
+    dataset = Dataset(train_data)
     train_loader = DataLoader(dataset, batch_size = config.batch_size)
 
     for img_dict in train_loader:
