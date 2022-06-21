@@ -140,11 +140,10 @@ if __name__ == '__main__':
     print(colored(summary(model, torch.zeros((1, 3, 1024, 768)), show_input=False, show_hierarchical=True), 'green'))
 
     model = model.to(config.device)
-    optimizer = optim.AdamW(
+    optimizer = optim.Adam(
         model.parameters(),
         lr = config.lr,
         weight_decay = config.weight_decay,
-        amsgrad = True
         )
 
     loss = TDLoss()
@@ -179,8 +178,8 @@ if __name__ == '__main__':
         print("="*30)
         start = time.time()
 
-        tr_metrics = train_on_epoch(train_loader, model, optimizer, loss, scaler, 0.5)
-        te_metrics = test_on_epoch(test_loader, model, loss, threshold = 0.5)
+        tr_metrics = train_on_epoch(train_loader, model, optimizer, loss, scaler, 0.6)
+        te_metrics = test_on_epoch(test_loader, model, loss, threshold = 0.6)
 
         write_summary(writer, tr_metrics, te_metrics, epoch)
 
