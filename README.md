@@ -13,17 +13,17 @@ Install the required dependencies.<br/>Environment characteristics: `python = 3.
 pip install -r requirements.txt
 ```
 ## Models
-Download pretrained model weights through the following tables. _More models are added as soon as they are trained/tested._
-### **Trained on Marmot Dataset**
-| Model | Weights | F1-Score | Precision | Recall |
-| :---: | :---: | :---: | :---: | :---: |
-| | | | | |
+Download pretrained model weights through the following tables. _More models are added as soon as they are trained/tested. All models have been trained on cTDaR Modern TRACK A Dataset._
+### **Evaluated on Marmot Dataset**
+| Model | Weights | Threshold | F1-Score | Precision | Recall |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| | | | | | |
 
-### **Trained on cTDaR Dataset**
+### **Evaluated on cTDaR Dataset**
 
-| Model | Weights | F1-Score | Precision | Recall |
-| :---: | :---: | :---: | :---: | :---: |
-| ConvNeXt-Tiny-CNDecoder | [Download](https://drive.google.com/file/d/1-INWLZ8RPdEM5mpqASL7Mx3dvVvpktw_/view?usp=sharing) | 0.954 | 0.960 | 0.954 |
+| Model | Weights | Threshold | F1-Score | Precision | Recall |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| ConvNeXt-Tiny-CNDecoder | [Download](https://drive.google.com/file/d/1-INWLZ8RPdEM5mpqASL7Mx3dvVvpktw_/view?usp=sharing) | 0.6 | 0.954 | 0.960 | 0.954 |
 
 ## Usage
 To get started, either clone this repo or arrange your working directory as:
