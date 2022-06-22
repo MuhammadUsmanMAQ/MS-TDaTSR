@@ -131,7 +131,7 @@ if __name__ == '__main__':
     if args.resume is not None:
         checkpoint_name = str(args.resume)
     else:
-        checkpoint_name = f'{config.base_dir}/models/stage_one/{config.encoder}_{config.decoder}/{config.run_id}_checkpoint.pth.tar'
+        checkpoint_name = f'{config.base_dir}/models/{config.encoder}_{config.decoder}/{config.run_id}_checkpoint.pth.tar'
     
     model = TDModel(use_pretrained_model = True, basemodel_requires_grad = True)
     
@@ -168,7 +168,7 @@ if __name__ == '__main__':
     #Train Network
     print("Training Model\n")
     writer = SummaryWriter(
-            f'{config.base_dir}/models/stage_one/{config.encoder}_{config.decoder}/{config.run_id}_train'
+            f'{config.base_dir}/models/{config.encoder}_{config.decoder}/{config.run_id}_train'
         )
 
     #for early stopping

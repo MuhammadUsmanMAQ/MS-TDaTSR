@@ -30,4 +30,4 @@ loss = 'JaccardLoss'
 """
     Base Directory to locate images/masks
 """
-data_dir = f"{base_dir}/datasets/stage_one/ctdar/train/locate.csv"
+data_dir = f"{base_dir}/datasets/ctdar/train/locate.csv"
