@@ -23,7 +23,7 @@ Download pretrained model weights through the following tables. _More models are
 
 | Model | Weights | F1-Score | Precision | Recall |
 | :---: | :---: | :---: | :---: | :---: |
-| | | | | |
+| ConvNeXt-Tiny-CNDecoder | [Download](https://drive.google.com/file/d/1-INWLZ8RPdEM5mpqASL7Mx3dvVvpktw_/view?usp=sharing) | 0.954 | 0.960 | 0.954 |
 
 ## Usage
 To get started, either clone this repo or arrange your working directory as:
