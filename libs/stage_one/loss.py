@@ -12,8 +12,8 @@ class TDLoss(losses.DiceLoss):
         elif loss == 'DiceLoss':
             self.loss = losses.DiceLoss('binary')
 
-        elif loss == 'SoftBCELoss':
-            self.loss = losses.SoftBCEWithLogitsLoss(smooth_factor = 0.1)
+        elif loss == 'JaccardLoss':
+            self.loss = losses.JaccardLoss('binary', smooth = 0.75)
 
         else:
             raise Exception('Invalid Loss Function')

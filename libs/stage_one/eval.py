@@ -17,6 +17,7 @@ import os
 import pandas as pd
 from data import Dataset
 from torch.utils.data import DataLoader
+from tabulate import tabulate
 
 """
     Evaluate Model
@@ -61,6 +62,7 @@ if __name__ == '__main__':
     parser.add_argument("--model_dir", help = "Load pretrained model.", required = True)
     parser.add_argument("--data_dir", help = "Path to locate.csv file.", required = False)
     parser.add_argument("--test_dir", help = "Path to locate.csv file.", required = False)
+    parser.add_argument("--no_csv", type = bool, help = "Does not write the CSV file.", required = False)
     args = parser.parse_args()
     
     if args.data_dir is None and args.test_dir is None:
@@ -72,6 +74,9 @@ if __name__ == '__main__':
     output_dir = str(args.output_dir)
 
     os.makedirs(output_dir, exist_ok = True) # Create output directory
+    tempdir = os.path.basename(saved_model)
+    size = len(str(tempdir))
+    newdir = tempdir[:size - 8]
 
     if args.data_dir is not None:
         data = evaluate_model_split(saved_model, data_dir)
@@ -88,7 +93,24 @@ if __name__ == '__main__':
     up_dict = {"Metric": "Value"}
     up_dict.update(r_data)
 
-    # Write .csv file
-    w = csv.writer(open(os.path.join(output_dir, "metrics.csv"), "w"))
+    csv_dir = os.path.join(output_dir, f"{newdir}_metrics.csv")
+
+    if args.no_csv is None:
+        # Write .csv file
+        w = csv.writer(open(os.path.join(output_dir, f"{newdir}_metrics.csv"), "w"))
+        for key, val in up_dict.items():
+            w.writerow([key, val])
+    
+    elif args.no_csv is True:
+        pass
+
+    elif args.no_csv is False:
+        # Write .csv file
+        w = csv.writer(open(os.path.join(output_dir, f"{newdir}_metrics.csv"), "w"))
+        for key, val in up_dict.items():
+            w.writerow([key, val])
+
+    print("\n")
+    # Print data to console
     for key, val in up_dict.items():
-        w.writerow([key, val])
+        print ("{:<20} {:<20}".format(key, val))

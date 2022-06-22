@@ -140,7 +140,7 @@ if __name__ == '__main__':
     print(colored(summary(model, torch.zeros((1, 3, 1024, 768)), show_input=False, show_hierarchical=True), 'green'))
 
     model = model.to(config.device)
-    optimizer = optim.Adam(
+    optimizer = optim.NAdam(
         model.parameters(),
         lr = config.lr,
         weight_decay = config.weight_decay,

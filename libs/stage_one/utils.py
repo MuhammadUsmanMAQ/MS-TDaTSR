@@ -42,8 +42,8 @@ def get_data_loaders(data_path = config.data_dir):
     train_dataset = Dataset(train_data, isTrain = True, transform = None)
     test_dataset = Dataset(test_data, isTrain = False, transform = None)
 
-    train_loader =  DataLoader(train_dataset, batch_size = config.batch_size, shuffle=True, num_workers = 4, pin_memory=True)
-    test_loader =  DataLoader(test_dataset, batch_size = config.batch_size, shuffle=False, num_workers = 4, pin_memory=True)
+    train_loader =  DataLoader(train_dataset, batch_size = config.batch_size, shuffle=True, num_workers = 2, pin_memory=True)
+    test_loader =  DataLoader(test_dataset, batch_size = config.batch_size, shuffle=False, num_workers = 2, pin_memory=True)
 
     return train_loader, test_loader
 

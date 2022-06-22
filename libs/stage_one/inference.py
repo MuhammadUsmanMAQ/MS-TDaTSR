@@ -1,9 +1,11 @@
 import config
 from train import test_on_epoch
 from loss import TDLoss
+from utils import get_data_loaders
 from model import TDModel
 
 from utils import (
+    get_data_loaders,
     load_checkpoint,
     save_fig,
     get_TableMasks

@@ -14,19 +14,19 @@ lr = 0.0001
 epochs = 30
 batch_size = 2
 weight_decay = 3e-4
-base_dir = "/content/drive/MyDrive/Colab Notebooks/Research/MS-TDaSR"
-run_id = datetime.now().strftime('%m_%d_%H%M%S')
+base_dir = "{CONFIGURE_BASE_DIR}"
+run_id = datetime.now().strftime('%H%M%S')
 
 """
     Available Options:
     Encoder: ResNet-50, ResNet-101, ConvNext-tiny, ConvNext-small, ConvNext-base, ConvNext-large
              EfficientNet-B0, EfficientNet-B1, EfficientNet-B2, EfficientNet-B3, EfficientNet-B4
     Decoder: CNDecoder, RNDecoder, ENDecoder
-    Loss: BCELoss, DiceLoss, SoftBCELoss
+    Loss: BCELoss, DiceLoss, JaccardLoss
 """
-encoder = 'EfficientNet-B4'
-decoder = 'ENDecoder'
-loss = 'SoftBCELoss'
+encoder = 'ConvNext-tiny'
+decoder = 'CNDecoder'
+loss = 'JaccardLoss'
 """
     Base Directory to locate images/masks
 """
