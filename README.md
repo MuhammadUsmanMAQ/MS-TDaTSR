@@ -4,7 +4,7 @@ We propose a multi-staged pipeline approach to tackle the issue of detection of 
 
 ## Dataset
 You can download and unpack the Marmot dataset (with image masks) into `datasets/stage_one` through the following link: [Marmot Dataset](https://drive.google.com/file/d/1-7cBtAraIa0e8c6kMFDPmlAlKOPOBccd/view?usp=sharing)
-Alternatively, you could also download the larger cTDaR dataset (with image masks) through the following link: [cTDaR](https://drive.google.com/file/d/1HmIISGpIdewxenQCaqcUi1bQNfiFNhxr/view?usp=sharing)
+Alternatively, you could also download the larger cTDaR dataset (with image masks; Modern TRACK A) through the following link: [cTDaR](https://drive.google.com/file/d/1PTlz7aXY9r6sQOXApPKOyvsD6sjrjt5Q/view?usp=sharing)
 
 ## Installation / Custom Runs
 Install the required dependencies.<br/>Environment characteristics: `python = 3.9.0` `torch = 1.10.0` `torchvision = 0.11.0` `torchaudio = 0.10.0`
@@ -17,13 +17,17 @@ Download pretrained model weights through the following tables. _More models are
 ### **Evaluated on Marmot Dataset**
 | Model | Weights | Threshold | F1-Score | Precision | Recall |
 | :---: | :---: | :---: | :---: | :---: | :---: |
-| | | | | | |
+| ConvNeXt-Tiny-CNDecoder | [Download](https://drive.google.com/file/d/1P-7q8J_T4OxH8xj1NpyiorQibetAJKFF/view?usp=sharing) | 0.6 | 0.937 | 0.909 | 0.973 |
+| ConvNeXt-Small-CNDecoder | [Download](https://drive.google.com/file/d/1P-7q8J_T4OxH8xj1NpyiorQibetAJKFF/view?usp=sharing) | 0.6 | 0.935 | 0.917 | 0.963 |
+| EfficientNet-B3-ENDecoder | [Download](https://drive.google.com/file/d/1-2F-DMPX2IL2PMnZxTK_2BkLnRNuF0P9/view?usp=sharing) | 0.6 | 0.945 | 0.928 | 0.967 |
 
 ### **Evaluated on cTDaR Dataset**
 
 | Model | Weights | Threshold | F1-Score | Precision | Recall |
 | :---: | :---: | :---: | :---: | :---: | :---: |
-| ConvNeXt-Tiny-CNDecoder | [Download](https://drive.google.com/file/d/1-INWLZ8RPdEM5mpqASL7Mx3dvVvpktw_/view?usp=sharing) | 0.6 | 0.954 | 0.960 | 0.954 |
+| ConvNeXt-Tiny-CNDecoder | [Download](https://drive.google.com/file/d/1P-7q8J_T4OxH8xj1NpyiorQibetAJKFF/view?usp=sharing) | 0.6 | 0.954 | 0.960 | 0.954 |
+| ConvNeXt-Small-CNDecoder | [Download](https://drive.google.com/file/d/1P-7q8J_T4OxH8xj1NpyiorQibetAJKFF/view?usp=sharing) | 0.6 | 0.957 | 0.971 | 0.948 |
+| EfficientNet-B3-ENDecoder | [Download](https://drive.google.com/file/d/1-2F-DMPX2IL2PMnZxTK_2BkLnRNuF0P9/view?usp=sharing) | 0.6 | 0.957 | 0.972 | 0.944 |
 
 ## Usage
 To get started, either clone this repo or arrange your working directory as:
