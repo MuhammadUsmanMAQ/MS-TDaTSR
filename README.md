@@ -27,7 +27,7 @@ Download pretrained model weights through the following tables. _More models are
 | :---: | :---: | :---: | :---: | :---: | :---: |
 | ConvNeXt-Tiny-CNDecoder | [Download](https://drive.google.com/file/d/1P-7q8J_T4OxH8xj1NpyiorQibetAJKFF/view?usp=sharing) | 0.6 | 0.954 | 0.960 | 0.954 |
 | ConvNeXt-Small-CNDecoder | [Download](https://drive.google.com/file/d/1P-7q8J_T4OxH8xj1NpyiorQibetAJKFF/view?usp=sharing) | 0.6 | 0.957 | 0.971 | 0.948 |
-| EfficientNet-B3-ENDecoder | [Download](https://drive.google.com/file/d/1-2F-DMPX2IL2PMnZxTK_2BkLnRNuF0P9/view?usp=sharing) | 0.6 | 0.957 | 0.972 | 0.944 |
+| EfficientNet-B3-ENDecoder | [Download](https://drive.google.com/file/d/1-2F-DMPX2IL2PMnZxTK_2BkLnRNuF0P9/view?usp=sharing) | 0.6 | 0.956 | 0.972 | 0.944 |
 
 ## Usage
 To get started, either clone this repo or arrange your working directory as:
