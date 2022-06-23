@@ -19,7 +19,7 @@ Download pretrained model weights through the following tables. _More models are
 | :---: | :---: | :---: | :---: | :---: | :---: |
 | ConvNeXt-Tiny-CNDecoder | [Download](https://drive.google.com/file/d/1-INWLZ8RPdEM5mpqASL7Mx3dvVvpktw_/view?usp=sharing) | 0.6 | 0.937 | 0.909 | 0.973 |
 | ConvNeXt-Small-CNDecoder | [Download](https://drive.google.com/file/d/1P-7q8J_T4OxH8xj1NpyiorQibetAJKFF/view?usp=sharing) | 0.6 | 0.935 | 0.917 | 0.963 |
-| ConvNeXt-Small-CNDecoder (Combined) | [Download](https://drive.google.com/file/d/1-A0W1Z0YNWifHLkCDbOutMqSVgz4PRPN/view?usp=sharing) | - | - | - | - |
+| ConvNeXt-Small-CNDecoder (Combined) | [Download](https://drive.google.com/file/d/1-A0W1Z0YNWifHLkCDbOutMqSVgz4PRPN/view?usp=sharing) | 0.6 | 0.962 | 0.959 | 0.969 |
 | EfficientNet-B3-ENDecoder | [Download](https://drive.google.com/file/d/1-2F-DMPX2IL2PMnZxTK_2BkLnRNuF0P9/view?usp=sharing) | 0.6 | 0.945 | 0.928 | 0.967 |
 
 ### **Evaluated on cTDaR Dataset**
