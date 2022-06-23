@@ -24,9 +24,9 @@ run_id = datetime.now().strftime('%H%M%S')
     Decoder: CNDecoder, RNDecoder, ENDecoder
     Loss: BCELoss, DiceLoss, JaccardLoss
 """
-encoder = 'ConvNext-tiny'
+encoder = 'ConvNext-small'
 decoder = 'CNDecoder'
-loss = 'JaccardLoss'
+loss = 'DiceLoss'
 """
     Base Directory to locate images/masks
 """

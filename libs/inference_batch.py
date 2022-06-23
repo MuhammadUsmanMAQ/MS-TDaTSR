@@ -38,7 +38,7 @@ def load_model(saved_model):
     return model
 
 def res_with_gt(model, path_to_img, path_to_gt, path_to_out, run_id):
-    save_id = "pred_" + str(run_id)
+    save_id = "batch_pred_" + str(run_id)
     out = os.path.join(path_to_out, save_id)
     os.makedirs(out, exist_ok = True)
     name = os.path.basename(path_to_img)
@@ -61,7 +61,7 @@ def res_with_gt(model, path_to_img, path_to_gt, path_to_out, run_id):
     save_fig_gt(test_img, test_table, np.squeeze(table_out), bbox_image, str(out), "p_" + name)
 
 def res_without_gt(model, path_to_img, path_to_out, run_id):
-    save_id = "pred_" + str(run_id)
+    save_id = "batch_pred_" + str(run_id)
     out = os.path.join(path_to_out, save_id)
     os.makedirs(out, exist_ok = True)
     name = os.path.basename(path_to_img)
@@ -85,22 +85,31 @@ def res_without_gt(model, path_to_img, path_to_out, run_id):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description = 'Evaluation Metrics')
-    parser.add_argument("--input_img", help = "Load an input image.", required = True)
-    parser.add_argument("--gt_dir", help = "Load ground truth mask.", required = False)
+    parser.add_argument("--test_dir", help = "Path to test images.", required = True)
+    parser.add_argument("--gt_dir", help = "Path to ground truth masks.", required = False)
     parser.add_argument("--model_dir", help = "Load pretrained model.", required = True)
     parser.add_argument("--output_dir", help = "Path to directory where masks/bbox will be saved.", required = True)
     args = parser.parse_args()
     
     run_id = datetime.now().strftime('%M%S')
     saved_model = str(args.model_dir)
-    img_dir = str(args.input_img)
+    test_dir = str(args.test_dir)
     output_dir = str(args.output_dir)
 
+    iter_list = os.listdir(test_dir)
+    
     plt.rcParams["figure.figsize"] = (15,15)
     model = load_model(saved_model)
 
     if args.gt_dir is None:
-        res_without_gt(model, img_dir, output_dir, run_id)
+        for i in iter_list:
+            print("Inferring on " + i)
+            td = os.path.join(test_dir, i)
+            res_without_gt(model, td, output_dir, str(run_id))
+        
     else:
-        gt_dir = str(args.gt_dir)
-        res_with_gt(model, img_dir, gt_dir, output_dir, run_id)
+        for i in iter_list:
+            print("Inferring on " + i)
+            td = os.path.join(test_dir, i)
+            gd = os.path.join(args.gt_dir, i)
+            res_with_gt(model, td, gd, output_dir, str(run_id))

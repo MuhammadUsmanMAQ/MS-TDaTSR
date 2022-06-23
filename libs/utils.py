@@ -1,11 +1,13 @@
 import torch
 import random
+from PIL import Image
 import numpy as np
 import os
 import pandas as pd
 import config
 import cv2
 import matplotlib.pyplot as plt
+import matplotlib.gridspec as gridspec
 from data import Dataset
 from torch.utils.data import DataLoader
 from sklearn.model_selection import train_test_split
@@ -125,47 +127,66 @@ def display(img, table, title = 'Original'):
     ax[1].set_title(f'{title} Table Mask')
     plt.show()
 
-def save_fig(img, table, out, save_id, n, title = 'Original'):
-    name = str(f"fig_{n}.png")
-    out_dir = os.path.join(out, name)
+def save_fig_gt(orig_img, orig_mask, table_mask, bbox_image, out_dir, n):
+    out_dir = os.path.join(out_dir, n)
 
-    f, ax  = plt.subplots(1, 2, figsize = (20,20))
-    ax[0].imshow(img)
-    ax[0].set_title(f'{title} Image')
-    ax[1].imshow(table)
-    ax[1].set_title(f'{title} Table Mask')
+    fig = plt.figure(figsize=(20, 20)) # Notice the equal aspect ratio
+    
+    ax = [fig.add_subplot(2, 2, i+1) for i in range(4)]
+    show_list = [orig_img, orig_mask, table_mask, bbox_image]
+    title_list = ['Original Image', 'Original Mask', 'Predicted Mask', 'Predicted BBox']
 
+    for a, b, c in zip(ax, show_list, title_list):
+        a.set_aspect('auto')
+        a.imshow(b)
+        a.set_title(c)
+
+    plt.subplots_adjust(wspace=0, hspace=0.1)
     plt.savefig(out_dir, bbox_inches='tight')
 
-def get_TableMasks(test_img, model, transform = TRANSFORM, device = config.device):
+def save_fig(orig_img, table_mask, bbox_image, out_dir, n):
+    out_dir = os.path.join(out_dir, n)
+
+    f, ax  = plt.subplots(1, 2, figsize = (20,20))
+
+    ax[0].imshow(orig_img)
+    ax[0].set_title(f'Original Image')
+
+    ax[1].imshow(bbox_image, cmap = 'gray')
+    ax[1].set_title(f'Predicted BBox')
+
+    plt.savefig(out_dir, bbox_inches='tight')
+    
+def get_masks(test_img, model, transform = TRANSFORM, device = config.device):
     image = transform(image = test_img)["image"]
     #get predictions
     model.eval()
     with torch.no_grad():
         image = image.to(device).unsqueeze(0)
-        #with torch.cuda.amp.autocast():
         table_out = model(image)
         table_out = torch.sigmoid(table_out)
 
     #remove gradients
     table_out = (table_out.cpu().detach().numpy().squeeze(0).transpose(1,2,0) > 0.5).astype(int)
+    table_out = table_out.reshape(1024, 768).astype(np.uint8)
 
+    kernel = np.ones((5, 5), np.uint8)
+    table_out = cv2.erode(table_out, kernel, iterations = 2)
+    table_out = cv2.dilate(table_out, kernel, iterations = 1)
+    
     return table_out
 
 def is_contour_bad(c):
 	# approximate the contour
     peri = cv2.arcLength(c, True)
     approx = cv2.approxPolyDP(c, 0.02 * peri, True)
-    # the contour is 'bad' if it is not a rectangle
     return not len(approx) == 4
 
-def fixMasks(image, table_mask):
+def get_bbox(image, table_mask):
     table_mask = table_mask.reshape(1024, 768).astype(np.uint8)
+    image = image[...,0].reshape(1024, 768).astype(np.uint8)
     
-    kernel = np.ones((5, 5), np.uint8)
-    table_mask = cv2.erode(table_mask, kernel)
     contours, table_heirarchy = cv2.findContours(table_mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
-    
     table_contours = []
 
     for c in contours:
@@ -174,16 +195,15 @@ def fixMasks(image, table_mask):
     
     if len(table_contours) == 0:
         return None
+
     table_boundRect = [None]*len(table_contours)
+
     for i, c in enumerate(table_contours):
         polygon = cv2.approxPolyDP(c, 3, True)
         table_boundRect[i] = cv2.boundingRect(polygon)
-    
-    #table bounding Box
+
     table_boundRect.sort()
-    image = image[...,0].reshape(1024, 768).astype(np.uint8)
-    
-    #draw bounding boxes
+
     color = (0,255,0)
     thickness = 4
  
