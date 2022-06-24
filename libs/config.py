@@ -15,7 +15,7 @@ epochs = 30
 batch_size = 2
 weight_decay = 3e-4
 base_dir = "{CONFIGURE_BASE_DIR}"
-run_id = datetime.now().strftime('%H%M%S')
+run_id = datetime.now().strftime("%H%M%S")
 
 """
     Available Options:
@@ -24,9 +24,10 @@ run_id = datetime.now().strftime('%H%M%S')
     Decoder: CNDecoder, RNDecoder, ENDecoder
     Loss: BCELoss, DiceLoss, JaccardLoss
 """
-encoder = 'ConvNext-small'
-decoder = 'CNDecoder'
-loss = 'DiceLoss'
+encoder = "ConvNext-small"
+decoder = "CNDecoder"
+loss = "DiceLoss"
+
 """
     Base Directory to locate images/masks
 """
