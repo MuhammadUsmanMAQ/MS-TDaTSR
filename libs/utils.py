@@ -259,6 +259,7 @@ def get_bbox(image, table_mask):
 def resize_padding(img_path):
     img = cv2.imread(img_path)
     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+    img = img[:, :, :3]
     old_h, old_w, channels = img.shape
 
     new_w = 768
