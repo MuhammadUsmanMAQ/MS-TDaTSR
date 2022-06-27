@@ -255,3 +255,24 @@ def get_bbox(image, table_mask):
         image = cv2.rectangle(image, (x, y), (x + w, y + h), color, thickness)
 
     return image, table_boundRect
+
+def resize_padding(img_path):
+    img = cv2.imread(img_path)
+    img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+    old_h, old_w, channels = img.shape
+
+    new_w = 768
+    new_h = 1024
+    color = (255, 255, 255)
+
+    result = np.full((new_h, new_w, channels), color, dtype=np.uint8)
+
+    # compute center offset
+    x_center = (new_w - old_w) // 2
+    y_center = (new_h - old_h) // 2
+
+    # copy img image into center of result image
+    result[y_center:y_center + old_h,
+           x_center:x_center + old_w] = img
+
+    return result

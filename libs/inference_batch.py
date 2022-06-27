@@ -11,6 +11,7 @@ from utils import (
     save_fig_gt,
     get_masks,
     get_bbox,
+    resize_padding,
 )
 
 import json
@@ -26,7 +27,7 @@ from datetime import datetime
 from tqdm import tqdm
 
 """
-    Inference on Batches
+    Evaluate Model
 """
 
 def load_model(saved_model):
@@ -46,11 +47,23 @@ def res_with_gt(model, path_to_img, path_to_gt, path_to_out, run_id):
     os.makedirs(out, exist_ok=True)
     name = os.path.basename(path_to_img)
 
-    test_img = np.array(Image.open(str(path_to_img)).convert("RGB"))
-    test_table = np.array(Image.open(str(path_to_gt)))
-    table_out = get_masks(test_img, model)
+    temp_img = np.array(Image.open(str(path_to_img)).convert("RGB"))
 
-    image, table_boundRect = get_bbox(test_img, table_out)
+    if temp_img.shape == (1024, 768, 3):
+        test_img = np.array(Image.open(str(path_to_img)).convert("RGB"))
+        test_table = np.array(Image.open(str(path_to_gt)))
+        table_out = get_masks(test_img, model)
+
+    else:
+        test_img = resize_padding(path_to_img)
+        table_out = get_masks(test_img, model)
+
+    outputs = get_bbox(test_img, table_out)
+
+    if outputs == None:
+        return
+
+    _, table_boundRect = outputs
 
     # draw bounding boxes of Table Coordinates
     color = (0, 255, 0)
@@ -72,10 +85,21 @@ def res_without_gt(model, path_to_img, path_to_out, run_id):
     os.makedirs(out, exist_ok=True)
     name = os.path.basename(path_to_img)
 
-    test_img = np.array(Image.open(str(path_to_img)).convert("RGB"))
-    table_out = get_masks(test_img, model)
+    temp_img = np.array(Image.open(str(path_to_img)).convert("RGB"))
+
+    if temp_img.shape == (1024, 768, 3):
+        test_img = np.array(Image.open(str(path_to_img)).convert("RGB"))
+        table_out = get_masks(test_img, model)
+
+    else:
+        test_img = resize_padding(path_to_img)
+        table_out = get_masks(test_img, model)
 
     outputs = get_bbox(test_img, table_out)
+
+    if outputs == None:
+        return
+
     _, table_boundRect = outputs
 
     # draw bounding boxes of Table Coordinates
@@ -95,11 +119,7 @@ if __name__ == "__main__":
     parser.add_argument("--test_dir", help="Path to test images.", required=True)
     parser.add_argument("--gt_dir", help="Path to ground truth masks.", required=False)
     parser.add_argument("--model_dir", help="Load pretrained model.", required=True)
-    parser.add_argument(
-        "--output_dir",
-        help="Path to directory where masks/bbox will be saved.",
-        required=True,
-    )
+    parser.add_argument("--output_dir", help="Path to directory where masks/bbox will be saved.", required=True)
     args = parser.parse_args()
 
     run_id = datetime.now().strftime("%M%S")
