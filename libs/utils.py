@@ -13,6 +13,7 @@ from torch.utils.data import DataLoader
 from sklearn.model_selection import train_test_split
 import albumentations as A
 from albumentations.pytorch import ToTensorV2
+from resizeimage import resizeimage
 
 """
     Utility functions imported/edited from TabNet-pytorch Git repo
@@ -257,23 +258,9 @@ def get_bbox(image, table_mask):
     return image, table_boundRect
 
 def resize_padding(img_path):
-    img = cv2.imread(img_path)
-    img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-    img = img[:, :, :3]
-    old_h, old_w, channels = img.shape
-
-    new_w = 768
-    new_h = 1024
-    color = (255, 255, 255)
-
-    result = np.full((new_h, new_w, channels), color, dtype=np.uint8)
-
-    # compute center offset
-    x_center = (new_w - old_w) // 2
-    y_center = (new_h - old_h) // 2
-
-    # copy img image into center of result image
-    result[y_center:y_center + old_h,
-           x_center:x_center + old_w] = img
+    img = Image.open(img_path)
+    img = resizeimage.resize_contain(img, [768, 1024])
+    img = np.array(img)
+    result = img[:, :, :3]
 
     return result
