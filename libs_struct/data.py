@@ -7,37 +7,60 @@ import torch
 import torch.nn as nn
 import pandas as pd
 import numpy as np
+import cv2
 from sklearn.model_selection import train_test_split
 from PIL import Image, ImageOps
 from torch.utils.data import DataLoader
 import albumentations as A
+from albumentations.augmentations.transforms import PadIfNeeded
 from albumentations.pytorch import ToTensorV2
 import config  # Contatining vars relevant to the Dataloader
 
 
+def padding(img, expected_size):
+    desired_width, desired_height = expected_size
+    delta_width = desired_width - img.size[0]
+    delta_height = desired_height - img.size[1]
+    pad_width = delta_width // 2
+    pad_height = delta_height // 2
+    padding = (
+        pad_width,
+        pad_height,
+        delta_width - pad_width,
+        delta_height - pad_height,
+    )
+
+    return np.array(ImageOps.expand(img, padding))
+
+
 def retTorchTensor(array):
     array = np.array(array)
+
+    if array.shape[1] > 384 and array.shape[0] > 512:
+        array = cv2.resize(array, (384, 512), interpolation=cv2.INTER_AREA)
+
+    elif array.shape[0] > 512:
+        array = cv2.resize(array, (array.shape[1], 512), interpolation=cv2.INTER_AREA)
+
+    elif array.shape[1] > 384:
+        array = cv2.resize(array, (384, array.shape[0]), interpolation=cv2.INTER_AREA)
+
+    else:
+        pass
+
+    array = padding(Image.fromarray(array), (512, 384))
     array = array[:, :, np.newaxis]
     array = torch.FloatTensor((np.array(array)) / 255.0).permute(2, 0, 1)
 
     return array
 
 
-def collate_fn(batch):
-    im = [item[0] for item in batch]
-    mask_r = [item[1] for item in batch]
-    mask_c = [item[2] for item in batch]
-    mask_rh = [item[3] for item in batch]
-    mask_ch = [item[4] for item in batch]
-    mask_s = [item[5] for item in batch]
-
-    return [im, mask_r, mask_c, mask_rh, mask_ch, mask_s]
-
 """
     Setting up the Dataset class in the way
         as per instructed in pytorch 
                 documentation
 """
+
 
 class Dataset(nn.Module):
     def __init__(self, df, isTrain=True, transform=None):
@@ -48,6 +71,7 @@ class Dataset(nn.Module):
         if transform is None:
             self.transform = A.Compose(
                 [
+                    # PadIfNeeded(384, 512, cv2.BORDER_CONSTANT, 0),
                     A.Normalize(
                         mean=[0.5, 0.5, 0.5],
                         std=[0.5, 0.5, 0.5],
@@ -78,6 +102,26 @@ class Dataset(nn.Module):
         )
 
         image = np.array(Image.open(os.path.join(config.base_dir, img_path)))
+
+        image = np.array(image)
+
+        if image.shape[1] > 384 and image.shape[0] > 512:
+            image = cv2.resize(image, (384, 512), interpolation=cv2.INTER_AREA)
+
+        elif image.shape[0] > 512:
+            image = cv2.resize(
+                image, (image.shape[1], 512), interpolation=cv2.INTER_AREA
+            )
+
+        elif image.shape[1] > 384:
+            image = cv2.resize(
+                image, (384, image.shape[0]), interpolation=cv2.INTER_AREA
+            )
+
+        else:
+            pass
+
+        image = padding(Image.fromarray(image), (512, 384))
 
         table_row = ImageOps.grayscale(
             Image.open(os.path.join(config.base_dir, table_row))
@@ -129,9 +173,9 @@ if __name__ == "__main__":
     )
 
     dataset = Dataset(train_data)
-    train_loader = DataLoader(dataset, batch_size=4, collate_fn=collate_fn)
+    train_loader = DataLoader(dataset, batch_size=config.batch_size)
 
-    for img_list in train_loader:
+    for i, img_list in zip(range(3), train_loader):
         (
             image,
             table_row,
@@ -148,5 +192,12 @@ if __name__ == "__main__":
             img_list[5],
         )
 
-        for i in image:  # To verify loading proc
-            print(i.shape)
+        print("Image: ", image.shape)
+        print("Mask: ", table_row.shape)
+        print("Mask: ", table_column.shape)
+        print("Mask: ", table_row_header.shape)
+        print("Mask: ", table_column_header.shape)
+        print("Mask: ", table_spanning.shape)
+        print("\n")
+        if i == 3:
+            break
