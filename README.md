@@ -13,14 +13,14 @@ Install the required dependencies.<br/>Environment characteristics: `python = 3.
 pip install -r requirements.txt
 ```
 ## Models
-Download pretrained model weights through the following tables. _All models have been trained on cTDaR Modern TRACK A Dataset._<br/>_Model Name_ (C) are models that have been trained on a mixed dataset of Marmot and cTDaR TRACK A.
+Download pretrained model weights through the following tables. _All models have been trained on cTDaR Modern TRACK A Dataset._<br/>_Model Name_ (CB) represents those model weights that yield the best evaluation metrics.
 
 ### **Evaluated on cTDaR TRACK-A Dataset**
 
 | Model | Weights | AP <sup>@ IoU=0.50</sup> | AP <sup>@ IoU=0.75</sup> | AP <sup>@ IoU=0.50:0.95</sup> |
 | :---: | :---: | :---: | :---: | :---: |
 | ConvNeXt-Tiny-CNDecoder | [Download](https://drive.google.com/file/d/1-INWLZ8RPdEM5mpqASL7Mx3dvVvpktw_/view?usp=sharing) | 0.958 | 0.953 | 0.954 |
-| ConvNeXt-Small-CNDecoder (C) | [Download](https://drive.google.com/file/d/1-A0W1Z0YNWifHLkCDbOutMqSVgz4PRPN/view?usp=sharing) | 0.988 | 0.984 | 0.984 |
+| **ConvNeXt-Small-CNDecoder** (CB) | [Download](https://drive.google.com/file/d/1-A0W1Z0YNWifHLkCDbOutMqSVgz4PRPN/view?usp=sharing) | 0.988 | 0.984 | 0.984 |
 | EfficientNet-B3-ENDecoder | [Download](https://drive.google.com/file/d/1-2F-DMPX2IL2PMnZxTK_2BkLnRNuF0P9/view?usp=sharing) | 0.977 | 0.974 | 0.971 |
 
 ## Usage
