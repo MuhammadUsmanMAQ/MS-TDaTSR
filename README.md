@@ -12,11 +12,11 @@ Install the required dependencies.<br/>Environment characteristics: `python = 3.
 ```
 pip install -r requirements.txt
 ```
-# Table Detection
 ## Models
 Download pretrained model weights through the following tables. _All models have been trained on cTDaR Modern TRACK A Dataset._<br/>_Model Name_ (CB) represents those model weights that yield the best evaluation metrics.
 
-### **Evaluated on cTDaR TRACK-A Dataset**
+## Table Detection
+ **Evaluated on cTDaR TRACK-A Dataset**
 
 | Model | Weights | Schedule |AP <sup>@ IoU=0.50</sup> | AP <sup>@ IoU=0.75</sup> | AP <sup>@ IoU=0.50:0.95</sup> |
 | :---: | :---: | :---: | :---: | :---: | :---: |
@@ -24,33 +24,40 @@ Download pretrained model weights through the following tables. _All models have
 | **TD-ConvNeXt-S** (CB) | [Download](https://drive.google.com/file/d/1-A0W1Z0YNWifHLkCDbOutMqSVgz4PRPN/view?usp=sharing) | 30 Epochs | 0.988 | 0.984 | 0.984 |
 | TD-EfficientNet-B3 | [Download](https://drive.google.com/file/d/1-2F-DMPX2IL2PMnZxTK_2BkLnRNuF0P9/view?usp=sharing) | 30 Epochs | 0.977 | 0.974 | 0.971 |
 
+<!---
+## Table Structure Recognition
+**Evaluated on _**
+
+| Model | Weights | Schedule |AP <sup>@ IoU=0.50</sup> | AP <sup>@ IoU=0.75</sup> | AP <sup>@ IoU=0.50:0.95</sup> |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| | [Download]() | | | | |
+-->
+
 ## Usage
 To get started, either clone this repo or arrange your working directory as:
 ```
 MS-TDaSR/
 ├── datasets
-│   └── stage_one
-│       ├── images/..
-│       ├── table_mask/..
-│       └── locate.csv
-├── libs
-│   └── stage_one
-│       ├── config.py
-│       ├── data.py
-│       ├── decoder.py
-│       ├── encoder.py
-│       ├── eval.py
-│       ├── loss.py
-│       ├── model.py
-│       ├── train.py
-│       └── utils.py
+│   ├── images/..
+│   ├── table_mask/..
+│   └── locate.csv
+├── libs-det
+│   ├── config.py
+│   ├── data.py
+│   ├── decoder.py
+│   ├── encoder.py
+│   ├── eval.py
+│   ├── inference.py
+│   ├── inference_batch.py
+│   ├── loss.py
+│   ├── model.py
+│   ├── train.py
+│   └── utils.py
 ├── models
-│   └── stage_one
-│       ├── EfficientNet-B4-Decoder/..
-│       ├── ResNet-101_RNDecoder/..
-│       └── /...
+│   ├── EfficientNet-B3-Decoder/..
+│   └── /...
 ├── outputs
-│   └── stage_one
+│   └── EfficientNet-B3-Decoder/..
 │       └── metrics.csv
 └── requirements.txt
 ```
