@@ -20,6 +20,7 @@ import config  # Contatining vars relevant to the Dataloader
                 documentation
 """
 
+
 class Dataset(nn.Module):
     def __init__(self, df, isTrain=True, transform=None):
         super(Dataset, self).__init__()
@@ -44,14 +45,16 @@ class Dataset(nn.Module):
     def __getitem__(self, index):
         img_path, table_mask_path = self.df.iloc[index, 0], self.df.iloc[index, 1]
         image = np.array(Image.open(os.path.join(config.base_dir, img_path)))
-        table_mask = torch.FloatTensor(
+        table_mask = (
             np.array(
                 ImageOps.grayscale(
                     Image.open(os.path.join(config.base_dir, table_mask_path))
                 )
             )
             / 255.0
-        ).reshape(1, 1024, 768)
+        )
+        table_mask = np.expand_dims(table_mask, axis=2)
+        table_mask = torch.FloatTensor(table_mask).permute(2, 0, 1)
 
         image = self.transform(image=image)["image"]
 
@@ -73,9 +76,9 @@ if __name__ == "__main__":
     dataset = Dataset(train_data)
     train_loader = DataLoader(dataset, batch_size=config.batch_size)
 
-    for img_dict in train_loader:
+    for (i, img_dict) in zip(range(3), train_loader):  # Iterate only thrice
         image, table_image = img_dict["image"], img_dict["table_mask"]
 
         # Helps in knowing that data is being loaded correctly
-        print(image.shape)
-        print(table_image.shape)
+        print("Image Shape: ", image.shape)
+        print("Mask Shape: ", table_image.shape, "\n")
