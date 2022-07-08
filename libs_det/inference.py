@@ -71,8 +71,13 @@ def res_with_gt(model, path_to_img, path_to_gt, path_to_out, run_id):
 
     bbox_image = test_img.copy()
 
-    for x, y, w, h in table_boundRect:
+    i = 1
+
+    for (x, y, w, h) in table_boundRect:
         bbox_image = cv2.rectangle(bbox_image, (x, y), (x + w, y + h), color, thickness)
+        cropped_image = test_img[y : y + h, x : x + w]
+        cv2.imwrite(os.path.join(str(out), f"t_{i}.jpg"), cropped_image)
+        i += 1
 
     save_fig_gt(
         test_img, test_table, np.squeeze(table_out), bbox_image, str(out), "p_" + name
@@ -108,8 +113,13 @@ def res_without_gt(model, path_to_img, path_to_out, run_id):
 
     bbox_image = test_img.copy()
 
-    for x, y, w, h in table_boundRect:
+    i = 1
+
+    for (x, y, w, h) in table_boundRect:
         bbox_image = cv2.rectangle(bbox_image, (x, y), (x + w, y + h), color, thickness)
+        cropped_image = test_img[y : y + h, x : x + w]
+        cv2.imwrite(os.path.join(str(out), f"t_{i}.jpg"), cropped_image)
+        i += 1
 
     save_fig(test_img, np.squeeze(table_out), bbox_image, str(out), "p_" + name)
 
@@ -119,7 +129,11 @@ if __name__ == "__main__":
     parser.add_argument("--input_img", help="Load an input image.", required=True)
     parser.add_argument("--gt_dir", help="Load ground truth mask.", required=False)
     parser.add_argument("--model_dir", help="Load pretrained model.", required=True)
-    parser.add_argument("--output_dir", help="Path to directory where masks/bbox will be saved.", required=True)
+    parser.add_argument(
+        "--output_dir",
+        help="Path to directory where masks/bbox will be saved.",
+        required=True,
+    )
     args = parser.parse_args()
 
     run_id = datetime.now().strftime("%M%S")
