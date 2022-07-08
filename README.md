@@ -12,11 +12,10 @@ Install the required dependencies.<br/>Environment characteristics: `python = 3.
 ```
 pip install -r requirements.txt
 ```
-## Models
-Download pretrained model weights through the following tables. _All models have been trained on cTDaR Modern TRACK A Dataset._<br/>_Model Name_ (CB) represents those model weights that yield the best evaluation metrics.
+## Models Weights
 
-## Table Detection
- **Evaluated on cTDaR TRACK-A Dataset**
+### Table Detection
+_All table detection models have been trained and evaluated on cTDaR Modern TRACK A Dataset._<br/>_Model Name_ (CB) represents those model weights that yield the best evaluation metrics.
 
 | Model | Weights | Schedule |AP <sup>@ IoU=0.50</sup> | AP <sup>@ IoU=0.75</sup> | AP <sup>@ IoU=0.50:0.95</sup> |
 | :---: | :---: | :---: | :---: | :---: | :---: |
@@ -25,7 +24,7 @@ Download pretrained model weights through the following tables. _All models have
 | TD-EfficientNet-B3 | [Download](https://drive.google.com/file/d/1-2F-DMPX2IL2PMnZxTK_2BkLnRNuF0P9/view?usp=sharing) | 30 Epochs | 0.977 | 0.974 | 0.971 |
 
 <!---
-## Table Structure Recognition
+### Table Structure Recognition
 **Evaluated on _**
 
 | Model | Weights | Schedule |AP <sup>@ IoU=0.50</sup> | AP <sup>@ IoU=0.75</sup> | AP <sup>@ IoU=0.50:0.95</sup> |
