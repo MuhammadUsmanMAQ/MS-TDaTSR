@@ -12,16 +12,17 @@ Install the required dependencies.<br/>Environment characteristics: `python = 3.
 ```
 pip install -r requirements.txt
 ```
+# Table Detection
 ## Models
 Download pretrained model weights through the following tables. _All models have been trained on cTDaR Modern TRACK A Dataset._<br/>_Model Name_ (CB) represents those model weights that yield the best evaluation metrics.
 
 ### **Evaluated on cTDaR TRACK-A Dataset**
 
-| Model | Weights | AP <sup>@ IoU=0.50</sup> | AP <sup>@ IoU=0.75</sup> | AP <sup>@ IoU=0.50:0.95</sup> |
-| :---: | :---: | :---: | :---: | :---: |
-| ConvNeXt-Tiny-CNDecoder | [Download](https://drive.google.com/file/d/1-INWLZ8RPdEM5mpqASL7Mx3dvVvpktw_/view?usp=sharing) | 0.958 | 0.953 | 0.954 |
-| **ConvNeXt-Small-CNDecoder** (CB) | [Download](https://drive.google.com/file/d/1-A0W1Z0YNWifHLkCDbOutMqSVgz4PRPN/view?usp=sharing) | 0.988 | 0.984 | 0.984 |
-| EfficientNet-B3-ENDecoder | [Download](https://drive.google.com/file/d/1-2F-DMPX2IL2PMnZxTK_2BkLnRNuF0P9/view?usp=sharing) | 0.977 | 0.974 | 0.971 |
+| Model | Weights | Schedule |AP <sup>@ IoU=0.50</sup> | AP <sup>@ IoU=0.75</sup> | AP <sup>@ IoU=0.50:0.95</sup> |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| TD-ConvNeXt-T | [Download](https://drive.google.com/file/d/1-INWLZ8RPdEM5mpqASL7Mx3dvVvpktw_/view?usp=sharing) | 30 Epochs | 0.958 | 0.953 | 0.954 |
+| **TD-ConvNeXt-S** (CB) | [Download](https://drive.google.com/file/d/1-A0W1Z0YNWifHLkCDbOutMqSVgz4PRPN/view?usp=sharing) | 30 Epochs | 0.988 | 0.984 | 0.984 |
+| TD-EfficientNet-B3 | [Download](https://drive.google.com/file/d/1-2F-DMPX2IL2PMnZxTK_2BkLnRNuF0P9/view?usp=sharing) | 30 Epochs | 0.977 | 0.974 | 0.971 |
 
 ## Usage
 To get started, either clone this repo or arrange your working directory as:
@@ -53,7 +54,6 @@ MS-TDaSR/
 │       └── metrics.csv
 └── requirements.txt
 ```
-- **Stage 1**
 1. Configure `base_dir` and `data_dir` in `config.py` and run `data.py` to ensure data is being loaded correctly.
 2. To make changes to the model _(i.e. changing the encoder, using ConvNeXt instead of ResNet, etc.)_, configure `encoder/decoder` in `config.py`.
 3. To train the model, configure the training hyperparameters in `config.py` and run `train.py`.
