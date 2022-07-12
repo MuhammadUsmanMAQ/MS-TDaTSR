@@ -23,8 +23,9 @@ _All table detection models have been trained and evaluated on cTDaR Modern TRAC
 | **TD-ConvNeXt-S** (CB) | [Download](https://drive.google.com/file/d/1-A0W1Z0YNWifHLkCDbOutMqSVgz4PRPN/view?usp=sharing) | 30 Epochs | 0.988 | 0.984 | 0.984 |
 | TD-EfficientNet-B3 | [Download](https://drive.google.com/file/d/1-2F-DMPX2IL2PMnZxTK_2BkLnRNuF0P9/view?usp=sharing) | 30 Epochs | 0.977 | 0.974 | 0.971 |
 
-<!---
 ### Table Structure Recognition
+'In Progress'
+<!---
 **Evaluated on _**
 
 | Model | Weights | Schedule |AP <sup>@ IoU=0.50</sup> | AP <sup>@ IoU=0.75</sup> | AP <sup>@ IoU=0.50:0.95</sup> |
