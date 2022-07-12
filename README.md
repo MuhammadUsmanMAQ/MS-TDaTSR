@@ -24,7 +24,7 @@ _All table detection models have been trained and evaluated on cTDaR Modern TRAC
 | TD-EfficientNet-B3 | [Download](https://drive.google.com/file/d/1-2F-DMPX2IL2PMnZxTK_2BkLnRNuF0P9/view?usp=sharing) | 30 Epochs | 0.977 | 0.974 | 0.971 |
 
 ### Table Structure Recognition
-'In Progress'
+`Status: In Progress`
 <!---
 **Evaluated on _**
 
@@ -53,6 +53,8 @@ MS-TDaSR/
 │   ├── model.py
 │   ├── train.py
 │   └── utils.py
+├── libs-struct
+│   ├── <Status: In Progress>
 ├── models
 │   ├── EfficientNet-B3-Decoder/..
 │   └── /...
