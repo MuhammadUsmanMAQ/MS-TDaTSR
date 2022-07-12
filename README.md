@@ -7,7 +7,7 @@ You can download and unpack the Marmot dataset (with image masks) into `datasets
 Alternatively, you could also download the larger cTDaR dataset (with image masks; Modern TRACK A) through the following link: [cTDaR](https://drive.google.com/file/d/1PTlz7aXY9r6sQOXApPKOyvsD6sjrjt5Q/view?usp=sharing)
 
 ## Installation / Custom Runs
-Install the required dependencies.<br/>Environment characteristics: `python = 3.9.0` `torch = 1.10.0` `torchvision = 0.11.0` `torchaudio = 0.10.0`
+Install the required dependencies.<br/>Environment characteristics: `python = 3.7.13` `torch = 1.11.0` `cuda = 11.3` `torchvision = 0.12.0` `torchaudio = 0.11.0`
 <br/>*It is better to create a new virtual environment so that updates/downgrades of packages do not break other projects.*
 ```
 pip install -r requirements.txt
