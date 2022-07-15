@@ -126,20 +126,16 @@ def res_without_gt(model, path_to_img, path_to_out, suffix):
         bbox_image = ori_img.copy()
 
     outputs = get_bbox(test_img, table_out)
-    print(h_ratio, w_ratio)
+    
     if outputs == None:
         raise Exception('No tables detected.')
 
     _, table_boundRect = outputs
     
-    print(table_boundRect)
-    
     for i in range(len(table_boundRect)):
         (x, y, w, h) = table_boundRect[i]
         (x, y, w, h) = round(x * w_ratio), round(y * h_ratio), round(w * w_ratio), round(h * h_ratio)
         table_boundRect[i] = (x, y, w, h)
-    
-    print(table_boundRect)
 
     #draw bounding boxes of Table Coordinates
     color = (0, 255, 0)
