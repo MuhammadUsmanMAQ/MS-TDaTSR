@@ -32,8 +32,6 @@ warnings.filterwarnings("ignore")
     Common train functions imported/edited from TabNet-pytorch Git repo
     https://github.com/asagar60/TableNet-pytorch/blob/main/Training/train.py
 """
-
-
 def train_on_epoch(data_loader, model, optimizer, loss, scaler, threshold=0.5):
 
     combined_loss = []

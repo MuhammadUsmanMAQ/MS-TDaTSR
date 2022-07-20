@@ -15,11 +15,11 @@ import albumentations as A
 from albumentations.pytorch import ToTensorV2
 from resizeimage import resizeimage
 
+
 """
     Utility functions imported/edited from TabNet-pytorch Git repo
     https://github.com/asagar60/TableNet-pytorch/blob/main/Training/utils.py
 """
-
 TRANSFORM = A.Compose(
     [
         A.Normalize(

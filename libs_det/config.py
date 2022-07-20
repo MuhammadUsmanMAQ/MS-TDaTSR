@@ -14,7 +14,7 @@ lr = 0.0001
 epochs = 30
 batch_size = 2
 weight_decay = 3e-4
-base_dir = "{CONFIGURE_BASE_DIR}"
+base_dir = "TO_BE_CONFIGURED"
 run_id = datetime.now().strftime("%H%M%S")
 
 """

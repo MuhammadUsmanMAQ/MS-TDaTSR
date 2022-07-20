@@ -8,6 +8,7 @@ import torchvision
 from torchinfo import summary
 import config
 
+
 """
     ConvNext Decoder
 """

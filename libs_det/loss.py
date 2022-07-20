@@ -3,7 +3,6 @@ import torch.nn as nn
 import config
 from segmentation_models_pytorch import losses
 
-
 class TDLoss(losses.DiceLoss):
     def __init__(self, loss=config.loss):
         super(TDLoss, self).__init__("binary")

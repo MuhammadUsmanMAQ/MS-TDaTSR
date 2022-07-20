@@ -6,6 +6,7 @@ from decoder import RNDecoder, CNDecoder, ENDecoder
 from torchinfo import summary
 import config
 
+
 """
     Model Definition
 """

@@ -26,6 +26,7 @@ from torchvision.models.detection.mask_rcnn import MaskRCNN
 from torchvision.models.detection.backbone_utils import LastLevelMaxPool
 from torchvision.ops.feature_pyramid_network import FeaturePyramidNetwork
 
+
 """
     Encoder definition
 """
