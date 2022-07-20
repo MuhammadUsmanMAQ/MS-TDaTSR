@@ -46,10 +46,10 @@ MS-TDaSR/
 1. Download the model weights provided in the [Table Detection](#table-detection) as `det_weights` and [Table Structure Recognition](#table-structure-recognition) as `struct_weights`.
 2. Either configure `det_weights`, `struct_weights`, `input_dir` and `output_dir` in `run.py` or pass in command line arguments. Example usage:
 ```python
-python eval.py --input_dir "{PATH_TO_INPUT_IMAGES}" \
-               --det_weights "{TABLE_DETECTOR_WEIGHTS}.pth.tar" \
-               --struct_weights "{STRUCTURE_DETECTOR_WEIGHTS}.pth.tar" \
-               --output_dir "{PATH_TO_OUTPUT_IMAGES}"
+python run.py --input_dir "{PATH_TO_INPUT_IMAGE}" \
+              --det_weights "{TABLE_DETECTOR_WEIGHTS}.pth.tar" \
+              --struct_weights "{STRUCTURE_DETECTOR_WEIGHTS}.pth.tar" \
+              --output_dir "{PATH_TO_OUTPUT_IMAGE}"
 ```
 <p align="center">
     <p1 align="center"> <b>Note:</b> <i>Individual inference (performing either table detection or structure extraction) is also possible.</i>
