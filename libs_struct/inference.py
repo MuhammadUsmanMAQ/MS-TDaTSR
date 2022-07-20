@@ -14,10 +14,12 @@ from mmdet.apis import inference_detector, show_result_pyplot, set_random_seed
 from mmdet.models import build_detector
 from mmdet.apis.inference import init_detector
 import mmcv
+import keras_ocr
 
 import subprocess
 import argparse
 from config import base_dir
+from utils import getCoords, solve, getArea
 from termcolor import colored
 import warnings
 
@@ -26,17 +28,6 @@ warnings.simplefilter("ignore", UserWarning)
 """
     Inference Model
 """
-
-
-def solve(R1, R2):
-    if (R1[0] >= R2[2]) or (R1[2] <= R2[0]) or (R1[3] <= R2[1]) or (R1[1] >= R2[3]):
-        return False
-    else:
-        return True
-
-
-def getArea(box):
-    return (box[2] - box[0]) * (box[3] - box[1])
 
 
 def upscale_image(upscale_model, input_dir, device):
@@ -60,8 +51,10 @@ def upscale_image(upscale_model, input_dir, device):
 
 
 def detect_structure(image, config_file, checkpoint_file, device, thresh):
+    print(colored("Initializing MMDetection Pipeline.", "red"))
     model = init_detector(config_file, checkpoint_file, device=device)
     result = inference_detector(model, image)  # Prints array of bbox
+    print(colored("Inference completed successfully.", "green"))
 
     det_boxes = []
     for r in result[0]:
@@ -72,19 +65,46 @@ def detect_structure(image, config_file, checkpoint_file, device, thresh):
         :, :4
     ]  # Each element is of format [xmin, ymin, xmax, ymax]
     det_boxes = det_boxes.tolist()
-    final_boxes = det_boxes.copy()
+    struct_boxes = det_boxes.copy()
 
     for i in range(len(det_boxes)):
         for k in range(len(det_boxes)):
             if (k != i) and (solve(det_boxes[i], det_boxes[k]) == True):
-                if (det_boxes[i] in final_boxes) and (
+                if (det_boxes[i] in struct_boxes) and (
                     getArea(det_boxes[i]) < getArea(det_boxes[k])
                 ):
-                    final_boxes.remove(det_boxes[i])
+                    struct_boxes.remove(det_boxes[i])
             else:
                 pass
 
-    return final_boxes
+    return struct_boxes
+
+
+def detect_text(image):
+    print(colored("Initializing KerasOCR Pipeline.", "red"))
+    prediction_groups = pipeline.recognize([image])
+    print(colored("Inference completed successfully.", "green"))
+
+    boxes = list()
+    for i in range(len(prediction_groups[0])):
+        _, box = prediction_groups[0][i]
+        boxes.append(box)
+
+    temp_boxes = list()
+    for i in range(len(boxes)):
+        temp_boxes.append(getCoords(boxes[i]))
+
+    keras_boxes = temp_boxes.copy()
+
+    for i in range(len(temp_boxes)):
+        for k in range(len(struct_boxes)):
+            if solve(struct_boxes[k], temp_boxes[i]) == True:
+                if temp_boxes[i] in keras_boxes:
+                    keras_boxes.remove(temp_boxes[i])
+            else:
+                pass
+
+    return keras_boxes
 
 
 if __name__ == "__main__":
@@ -116,8 +136,10 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
     base_name = os.path.split(str(args.input_img))[1]
-
+    pipeline = keras_ocr.pipeline.Pipeline()
     device = str(torch.device("cuda" if torch.cuda.is_available() else "cpu"))
+
+    # MMDet Pipeline
     if device == "cpu":
         print(colored("Using CPU runtime, this may take a while.", "red"))
         print(
@@ -138,8 +160,7 @@ if __name__ == "__main__":
 
         if stat == 0:
             print(colored("Upscaled input successfully.", "green"))
-            ori_img = cv2.imread(osp.abspath(f"output/{base_name}"), cv2.IMREAD_COLOR)
-            ori_img = ori_img[:, :, :3]
+            ori_img = cv2.imread(f"output/{base_name[:-4]}.png", cv2.IMREAD_COLOR)
         elif stat == 1:
             print(colored("Recheck argument directiories and try again.", "red"))
             exit()
@@ -159,17 +180,32 @@ if __name__ == "__main__":
         ori_img = ori_img[:, :, :3]  # Removing possible alpha channel
 
     struct_img = ori_img.copy()
+
     checkpoint_file = args.struct_weights
     print(checkpoint_file)
+
+    # MMDet Pipeline
     struct_boxes = detect_structure(
         struct_img, "config.py", checkpoint_file, device, 0.3
     )
+
+    # Keras Pipeline
+    keras_boxes = detect_text(struct_img)
 
     for i in range(len(struct_boxes)):
         struct_img = cv2.rectangle(
             struct_img,
             (struct_boxes[i][0], struct_boxes[i][1]),
             (struct_boxes[i][2], struct_boxes[i][3]),
+            (0, 255, 0),
+            2,
+        )
+
+    for i in range(len(keras_boxes)):
+        struct_img = cv2.rectangle(
+            struct_img,
+            (keras_boxes[i][0], keras_boxes[i][1]),
+            (keras_boxes[i][2], keras_boxes[i][3]),
             (0, 255, 0),
             2,
         )
