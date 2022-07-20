@@ -6,15 +6,16 @@ We propose a multi-staged pipeline approach to tackle the issue of detection of 
 You can download and unpack the Marmot dataset (with image masks) into `datasets/stage_one` through the following link: [Marmot Dataset](https://drive.google.com/file/d/1-7cBtAraIa0e8c6kMFDPmlAlKOPOBccd/view?usp=sharing)
 Alternatively, you could also download the larger cTDaR dataset (with image masks; Modern TRACK A) through the following link: [cTDaR](https://drive.google.com/file/d/1PTlz7aXY9r6sQOXApPKOyvsD6sjrjt5Q/view?usp=sharing)
 
-## Installation / Custom Runs
+## Dependencies
 Install the required dependencies.<br/>Environment characteristics:<br/>`python = 3.7.13` `torch = 1.11.0` `cuda = 11.3` `torchvision = 0.12.0` `torchaudio = 0.11.0`
 <br/>*It is better to create a new virtual environment so that updates/downgrades of packages do not break other projects.*
 ```
 pip install -r requirements.txt
 ```
 
-## Usage
-To get started, either clone this repo or arrange your working directory as:
+## Installation / Run
+To get started, clone this repo and place the downloaded model weights of Upscale, Table Detection and Table Structure Recognition in the models directory.<br/>
+Note: _You will need to configure weight directories in the libs_det & libs_struct if you want to run .py files without command line arguments.
 ```python
 MS-TDaSR/
 ├── datasets
@@ -32,13 +33,15 @@ MS-TDaSR/
 │   ├── train.py
 │   └── utils.py
 ├── libs-struct
-│   ├── mmdetection (Clone)
+│   ├── architectures/
+│   ├── utils/
+│   ├── config.py
 │   ├── config.py
 │   └── inference.py
 ├── models
-│   └── /...
-├── outputs
-│   └── /...
+│   ├── det/(Downloaded Weights.pth)
+│   ├── struct/(Downloaded Weights.pth)
+│   └── upscale/(Downloaded Weights.pth)
 ├── run.py
 └── requirements.txt
 ```
@@ -74,16 +77,16 @@ _All table detection models have been trained and evaluated on cTDaR Modern TRAC
 4. To evaluate the model on a test dataset, use the script `eval.py` with the required positional arguments.
 Example usage:
 ```python
-python eval.py --output_dir "{config.base_dir}/outputs/stage_one/{config.encoder}_{config.decoder}" \
-               --model_dir "{config.base_dir}/models/stage_one/{config.encoder}_{config.decoder}/{model_name}.pth.tar" \
-               --data_dir "{config.data_dir}"
+python eval.py --output_dir "{PATH_TO_OUTPUT_DIRECTORY}" \
+               --model_dir "{TABLE_DETECTOR_WEIGHTS}.pth.tar" \
+               --data_dir "{PATH_TO_INPUT_DIR}"
 ```
 5. To get model predictions for a single input image, use the script `inference.py` with the required positional arguments. Example usage:
 ```python
-python inference.py --input_img "{path_to_input}" \
-                    --gt_dir "{path_to_gt}" \ # Optional
-                    --model_dir "{config.base_dir}/models/stage_one/{config.encoder}_{config.decoder}/{model_name}.pth.tar" \
-                    --output_dir "{config.base_dir}/outputs/stage_one/{config.encoder}_{config.decoder}"
+python inference.py --input_img "{PATH_TO_INPUT_IMG}" \
+                    --gt_dir "{PATH_TO_INPUT_MASK}" \ # Optional
+                    --model_dir "{TABLE_DETECTOR_WEIGHTS}.pth.tar" \
+                    --output_dir "{{PATH_TO_OUTPUT_DIRECTORY}"
 ```
 
 ## Table Structure Recognition
