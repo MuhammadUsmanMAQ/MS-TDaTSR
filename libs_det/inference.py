@@ -175,7 +175,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Evaluation Metrics")
     parser.add_argument("--input_img", help="Load an input image.", required=True)
     parser.add_argument("--gt_dir", help="Load ground truth mask.", required=False)
-    parser.add_argument("--model_dir", help="Load pretrained model.", required=True)
+    parser.add_argument("--det_weights", help="Load pretrained model.", required=True)
     parser.add_argument(
         "--output_dir",
         help="Path to directory where masks/bbox will be saved.",
@@ -184,7 +184,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     suffix = os.path.split(str(args.input_img))[1][:-4]
-    saved_model = str(args.model_dir)
+    saved_model = str(args.det_weights)
     img_dir = str(args.input_img)
     output_dir = str(args.output_dir)
 

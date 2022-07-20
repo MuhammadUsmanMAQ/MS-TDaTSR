@@ -74,7 +74,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--output_dir", help="Dump metrics into a CSV file.", required=True
     )
-    parser.add_argument("--model_dir", help="Load pretrained model.", required=True)
+    parser.add_argument("--det_weights", help="Load pretrained model.", required=True)
     parser.add_argument(
         "--data_dir",
         help="Path to complete data's locate.csv file. (Applies train/test split.)",
@@ -102,7 +102,7 @@ if __name__ == "__main__":
     if args.data_dir is None and args.test_dir is None:
         parser.error("At least one of --data_dir and --test_dir is required.")
 
-    saved_model = str(args.model_dir)
+    saved_model = str(args.det_weights)
     data_dir = str(args.data_dir)
     test_dir = str(args.test_dir)
     output_dir = str(args.output_dir)
