@@ -19,14 +19,14 @@ _All structure recognition models have been trained and evaluated on a custom ve
 ## **Directory Descriptions**
 
 - ### Input Directory<br/>
-Self-Creating: Contains the original input image passed as a command line argument to `inference.py`. 
+**Created upon Execution** - Contains the original input image passed as a command line argument to `inference.py`. 
 Useful in comparing original image with the upscaled image.
 
 - ### Upscale Directory<br/>
-Self-Creating: Contains the upscaled version of the input image passed as a command line argument to `inference.py`.
+**Created upon Execution** - Contains the upscaled version of the input image passed as a command line argument to `inference.py`.
 
 - ### Output Directory<br/>
-Self-Creating: Stores the output image containing the bounding boxes predicted by the model. By default, the file name of the resulting image is the same as the file name of the input image.
+**Created upon Execution** - Stores the output image containing the bounding boxes predicted by the model. By default, the file name of the resulting image is the same as the file name of the input image.
 
 - ### Utils Directory<br/>
 Cloned from [iNNfer](https://github.com/victorca25/iNNfer). _Modified to contain specific bounding box functions to remove redundancy in the output image._
