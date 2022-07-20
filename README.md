@@ -15,7 +15,7 @@ pip install -r requirements.txt
 
 ## Installation / Run
 To get started, clone this repo and place the downloaded model weights of Upscale, Table Detection and Table Structure Recognition in the models directory.<br/>
-**Note: _You will need to configure weight directories in the libs_det & libs_struct if you want to run .py files without command line arguments._** <br/>
+**Note: _You will need to configure weight directories in specific .py files in libs_det/ & libs_struct/ if you want to execute scripts without command line arguments._** <br/>
 Your directory should look something like as the following tree:
 ```python
 MS-TDaSR/
