@@ -34,6 +34,7 @@ warnings.filterwarnings("ignore")
     https://github.com/asagar60/TableNet-pytorch/blob/main/Training/train.py
 """
 
+
 def train_on_epoch(data_loader, model, optimizer, loss, scaler, threshold=0.5):
 
     combined_loss = []
@@ -155,9 +156,7 @@ if __name__ == "__main__":
 
     model = model.to(config.device)
     optimizer = optim.NAdam(
-        model.parameters(),
-        lr=config.lr,
-        weight_decay=config.weight_decay,
+        model.parameters(), lr=config.lr, weight_decay=config.weight_decay,
     )
 
     loss = TDLoss()

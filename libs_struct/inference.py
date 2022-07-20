@@ -2,6 +2,7 @@
 import os
 
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
+os.environ["TCMALLOC_LARGE_ALLOC_REPORT_THRESHOLD"] = "2147483648"
 import os.path as osp
 import cv2
 import numpy as np
@@ -124,15 +125,12 @@ if __name__ == "__main__":
     parser.set_defaults(upscale=True)
     parser.add_argument(
         "--upscale_model",
-        help="Load image upscaling model, Options: 'animesharp', 'nkmd_typescale'. Read: http://upscale.wiki/",
+        help="Change upscaling model, Options: 'animesharp', 'nkmd_typescale'. Read: http://upscale.wiki/",
         default="animesharp",
         required=False,
     )
     parser.add_argument(
-        "--struct_weights",
-        help="Load structure recognition model.",
-        default=osp.join(f"{base_dir}", "models/struct/grid_rcnn_12e_ckpt.pth"),
-        required=False,
+        "--struct_weights", help="Load structure recognition model.", required=True,
     )
     args = parser.parse_args()
 
@@ -208,7 +206,7 @@ if __name__ == "__main__":
         )
 
     os.makedirs("output/", exist_ok=True)
-    
+
     for i in range(len(keras_boxes)):
         struct_img = cv2.rectangle(
             struct_img,

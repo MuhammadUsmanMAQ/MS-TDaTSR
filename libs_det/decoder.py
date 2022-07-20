@@ -12,6 +12,7 @@ import config
     ConvNext Decoder
 """
 
+
 class CNDecoder(nn.Module):
     def __init__(self, channels, kernels, strides):
         super(CNDecoder, self).__init__()
@@ -58,10 +59,7 @@ class CNDecoder(nn.Module):
         )
 
         self.upsample_5_table = nn.ConvTranspose2d(
-            in_channels=128,
-            out_channels=1,
-            kernel_size=kernels[1],
-            stride=strides[1],
+            in_channels=128, out_channels=1, kernel_size=kernels[1], stride=strides[1],
         )
 
     def forward(self, x, pool_3_out, pool_4_out):
@@ -82,6 +80,7 @@ class CNDecoder(nn.Module):
 """
     ResNet Decoder
 """
+
 
 class RNDecoder(nn.Module):
     def __init__(self, channels, kernels, strides):
@@ -146,6 +145,7 @@ class RNDecoder(nn.Module):
     EfficientNet Decoder
 """
 
+
 class ENDecoder(nn.Module):
     def __init__(self, channels, kernels, strides):
         super(ENDecoder, self).__init__()
@@ -199,10 +199,7 @@ class ENDecoder(nn.Module):
         )
 
         self.upsample_6_table = nn.ConvTranspose2d(
-            in_channels=256,
-            out_channels=1,
-            kernel_size=kernels[1],
-            stride=strides[1],
+            in_channels=256, out_channels=1, kernel_size=kernels[1], stride=strides[1],
         )
 
     def forward(self, x, pool_3_out, pool_4_out):

@@ -20,6 +20,7 @@ from tabulate import tabulate
     Evaluate Model
 """
 
+
 def evaluate_model_split(saved_model, data_dir, threshold):
     model = TDModel(use_pretrained_model=True, basemodel_requires_grad=True)
     model = model.to(config.device)

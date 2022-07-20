@@ -3,6 +3,7 @@ import torch.nn as nn
 import config
 from segmentation_models_pytorch import losses
 
+
 class TDLoss(losses.DiceLoss):
     def __init__(self, loss=config.loss):
         super(TDLoss, self).__init__("binary")
@@ -19,9 +20,7 @@ class TDLoss(losses.DiceLoss):
             raise Exception("Invalid Loss Function")
 
     def forward(
-        self,
-        table_pred,
-        table_gt,
+        self, table_pred, table_gt,
     ):
         table_loss = self.loss(table_pred, table_gt)
         return table_loss

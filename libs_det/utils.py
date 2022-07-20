@@ -23,9 +23,7 @@ from resizeimage import resizeimage
 TRANSFORM = A.Compose(
     [
         A.Normalize(
-            mean=[0.485, 0.456, 0.406],
-            std=[0.229, 0.224, 0.225],
-            max_pixel_value=255,
+            mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225], max_pixel_value=255,
         ),
         ToTensorV2(),
     ]
@@ -130,6 +128,7 @@ def display_metrics(epoch, tr_metrics, te_metrics):
 """
     Metrics to compare proposed model with well-performing models
 """
+
 
 def compute_metrics(ground_truth, prediction, threshold=0.5):
     ground_truth = ground_truth.int()
@@ -256,6 +255,7 @@ def get_bbox(image, table_mask):
         image = cv2.rectangle(image, (x, y), (x + w, y + h), color, thickness)
 
     return image, table_boundRect
+
 
 def resize_padding(img_path):
     img = Image.open(img_path)

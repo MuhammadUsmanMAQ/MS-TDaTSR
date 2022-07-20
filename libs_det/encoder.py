@@ -30,6 +30,7 @@ from torchvision.ops.feature_pyramid_network import FeaturePyramidNetwork
     Encoder definition
 """
 
+
 class ConvNext(nn.Module):
     def __init__(self, scale="small", pretrained=True, requires_grad=True):
         super(ConvNext, self).__init__()

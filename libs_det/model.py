@@ -10,6 +10,7 @@ import config
     Model Definition
 """
 
+
 class TDModel(nn.Module):
     def __init__(
         self,
