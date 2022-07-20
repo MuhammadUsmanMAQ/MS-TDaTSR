@@ -1,0 +1,3 @@
+[submodule "libs_struct/mmdetection"]
+	path = libs_struct/mmdetection
+	url = https://github.com/open-mmlab/mmdetection
