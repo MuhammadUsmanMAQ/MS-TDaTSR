@@ -1,8 +1,5 @@
 # Common Libraries
 import os
-
-os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
-os.environ["TCMALLOC_LARGE_ALLOC_REPORT_THRESHOLD"] = "2147483648"
 import os.path as osp
 import cv2
 import numpy as np
