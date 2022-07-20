@@ -47,7 +47,7 @@ MS-TDaSR/
 └── requirements.txt
 ```
 
-1. Download the model weights provided in the [Table Detection](#table-detection) as `det_weights` and [Table Structure Recognition](#table-structure-recognition) as `struct_weights`.
+1. Download the model weights provided in the [Table Detection](libs_det#table-detection) as `det_weights` and [Table Structure Recognition](libs_struct#table-structure-recognition) as `struct_weights`.
 2. Either configure `det_weights`, `struct_weights`, `input_dir` and `output_dir` in `run.py` or pass in command line arguments. Example usage:
 ```python
 python run.py --input_dir "{PATH_TO_INPUT_IMAGE}" \
