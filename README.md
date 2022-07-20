@@ -57,6 +57,4 @@ python run.py --input_dir "{PATH_TO_INPUT_IMAGE}" \
 ```
 <p align="center">
     <p1 align="center"> <b>Note:</b> <i>Individual inference (performing either table detection or structure extraction) is also possible.</i>
-    <br>
-    <b>We also provide pretrained weights along with their schedule details in the sections that follow.</b> </p1>
 </p>
