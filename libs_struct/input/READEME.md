@@ -1,2 +1,4 @@
 # Input Directory
-Self-creating directory - Stores the original input image passed as a command line argument to libs_struct/inference.py. Useful in comparing original image with the upscaled image.
+### **Self-Creating Directory**<br/>
+Stores the original input image passed as a command line argument to [inference.py](https://github.com/muhd-umer/MS-TDaTSR/blob/main/libs_struct/inference.py). 
+Useful in comparing original image with the upscaled image.
