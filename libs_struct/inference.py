@@ -1,5 +1,7 @@
 # Common Libraries
 import os
+
+os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
 import os.path as osp
 import cv2
 import numpy as np
@@ -9,17 +11,14 @@ import torch, torchvision
 
 # OpenMMLabs
 import mmdet
-from mmcv.runner import load_checkpoint
-from mmdet.apis import inference_detector, show_result_pyplot, set_random_seed
-from mmdet.models import build_detector
+from mmdet.apis import inference_detector
 from mmdet.apis.inference import init_detector
-import mmcv
 import keras_ocr
 
 import subprocess
 import argparse
 from config import base_dir
-from utils import getCoords, solve, getArea
+from utils.utils import getCoords, solve, getArea
 from termcolor import colored
 import warnings
 
@@ -36,7 +35,7 @@ def upscale_image(upscale_model, input_dir, device):
     base_name = os.path.split(str(input_dir))[1]
 
     os.makedirs("input/", exist_ok=True)
-    os.makedirs("output/", exist_ok=True)
+    os.makedirs("upscale/", exist_ok=True)
 
     cv2.imwrite(
         f"input/{base_name}", image[:, :, :3]
@@ -82,6 +81,7 @@ def detect_structure(image, config_file, checkpoint_file, device, thresh):
 
 def detect_text(image):
     print(colored("Initializing KerasOCR Pipeline.", "red"))
+    pipeline = keras_ocr.pipeline.Pipeline()
     prediction_groups = pipeline.recognize([image])
     print(colored("Inference completed successfully.", "green"))
 
@@ -124,19 +124,25 @@ if __name__ == "__main__":
     parser.set_defaults(upscale=True)
     parser.add_argument(
         "--upscale_model",
-        help="Load image upscaling model, Options: '4x-AnimeSharp', 'NKMDTypeScale'. Read: http://upscale.wiki/",
-        default="4x-AnimeSharp",
+        help="Load image upscaling model, Options: 'animesharp', 'nkmd_typescale'. Read: http://upscale.wiki/",
+        default="animesharp",
         required=False,
     )
     parser.add_argument(
         "--struct_weights",
         help="Load structure recognition model.",
-        default=osp.join(f"{base_dir}", "models/struct/grid_rcnn/best_ckpt.pth"),
+        default=osp.join(f"{base_dir}", "models/struct/grid_rcnn_12e_ckpt.pth"),
         required=False,
     )
     args = parser.parse_args()
+
+    if osp.exists(args.input_img):
+        pass
+    else:
+        print(colored("Input image does not exist. Recheck file directory.", "red",))
+        exit()
+
     base_name = os.path.split(str(args.input_img))[1]
-    pipeline = keras_ocr.pipeline.Pipeline()
     device = str(torch.device("cuda" if torch.cuda.is_available() else "cpu"))
 
     # MMDet Pipeline
@@ -160,7 +166,7 @@ if __name__ == "__main__":
 
         if stat == 0:
             print(colored("Upscaled input successfully.", "green"))
-            ori_img = cv2.imread(f"output/{base_name[:-4]}.png", cv2.IMREAD_COLOR)
+            ori_img = cv2.imread(f"upscale/{base_name[:-4]}.png", cv2.IMREAD_COLOR)
         elif stat == 1:
             print(colored("Recheck argument directiories and try again.", "red"))
             exit()
@@ -201,6 +207,8 @@ if __name__ == "__main__":
             2,
         )
 
+    os.makedirs("output/", exist_ok=True)
+    
     for i in range(len(keras_boxes)):
         struct_img = cv2.rectangle(
             struct_img,
@@ -209,5 +217,5 @@ if __name__ == "__main__":
             (0, 255, 0),
             2,
         )
-
-    cv2.imwrite(f"results/{base_name}", struct_img)
+    print(colored("\nSaving output image with bounding boxes.", "green",))
+    cv2.imwrite(f"output/{base_name}", struct_img)

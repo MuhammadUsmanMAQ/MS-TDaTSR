@@ -1,6 +1,0 @@
-Metric,Value
-table_loss,0.084
-table_f1,0.954
-table_precision,0.96
-table_recall,0.954
-table_acc,0.975
