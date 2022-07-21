@@ -16,6 +16,7 @@ from data import Dataset
 from torch.utils.data import DataLoader
 from tabulate import tabulate
 
+
 """
     Evaluate Model
 """
@@ -92,10 +93,12 @@ if __name__ == "__main__":
         help="Confidence score for calculating metrics. (Default = 0.6)",
         required=False,
     )
+
     args = parser.parse_args()
 
     if args.threshold is None:
         threshold = 0.6
+
     else:
         threshold = args.threshold
 
