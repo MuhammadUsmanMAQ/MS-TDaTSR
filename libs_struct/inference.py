@@ -11,11 +11,10 @@ import torch, torchvision
 import mmdet
 from mmdet.apis import inference_detector
 from mmdet.apis.inference import init_detector
-import keras_ocr
+from craft_text_detector import Craft
 
 import subprocess
 import argparse
-from config import base_dir
 from utils.utils import getCoords, solve, getArea
 from termcolor import colored
 import warnings
@@ -77,32 +76,30 @@ def detect_structure(image, config_file, checkpoint_file, device, thresh):
     return struct_boxes
 
 
-def detect_text(image):
-    print(colored("Initializing KerasOCR Pipeline.", "red"))
-    pipeline = keras_ocr.pipeline.Pipeline()
-    prediction_groups = pipeline.recognize([image])
+def detect_text(image, device, struct_boxes):
+    print(colored("Initializing Craft Text Detector.", "red"))
+    if device == "cpu":
+        craft = Craft(output_dir=None, crop_type="box", cuda=False, long_size=1600)
+    elif device == "cuda":
+        craft = Craft(output_dir=None, crop_type="box", cuda=True, long_size=1600)
+    prediction_result = craft.detect_text(image)
     print(colored("Inference completed successfully.", "green"))
-
-    boxes = list()
-    for i in range(len(prediction_groups[0])):
-        _, box = prediction_groups[0][i]
-        boxes.append(box)
+    regions = prediction_result["boxes"]
 
     temp_boxes = list()
-    for i in range(len(boxes)):
-        temp_boxes.append(getCoords(boxes[i]))
+    for i in range(len(regions)):
+        temp_boxes.append(getCoords(regions[i]))
 
-    keras_boxes = temp_boxes.copy()
+    craft_boxes = temp_boxes.copy()
+    # for i in range(len(temp_boxes)):
+    #     for k in range(len(struct_boxes)):
+    #         if solve(struct_boxes[k], temp_boxes[i]) == True:
+    #             if temp_boxes[i] in craft_boxes:
+    #                 craft_boxes.remove(temp_boxes[i])
+    #         else:
+    #             pass
 
-    for i in range(len(temp_boxes)):
-        for k in range(len(struct_boxes)):
-            if solve(struct_boxes[k], temp_boxes[i]) == True:
-                if temp_boxes[i] in keras_boxes:
-                    keras_boxes.remove(temp_boxes[i])
-            else:
-                pass
-
-    return keras_boxes
+    return craft_boxes
 
 
 if __name__ == "__main__":
@@ -181,17 +178,18 @@ if __name__ == "__main__":
         ori_img = ori_img[:, :, :3]  # Removing possible alpha channel
 
     struct_img = ori_img.copy()
-
     checkpoint_file = args.struct_weights
-    print(checkpoint_file)
 
     # MMDet Pipeline
     struct_boxes = detect_structure(
-        struct_img, "config.py", checkpoint_file, device, 0.3
+        struct_img, "config.py", checkpoint_file, device, 0.7
     )
 
     # Keras Pipeline
-    keras_boxes = detect_text(struct_img)
+    craft_boxes = detect_text(struct_img, device, struct_boxes)
+
+    # Save Output Image with BBoxes
+    os.makedirs("output/", exist_ok=True)
 
     for i in range(len(struct_boxes)):
         struct_img = cv2.rectangle(
@@ -202,15 +200,14 @@ if __name__ == "__main__":
             2,
         )
 
-    os.makedirs("output/", exist_ok=True)
-
-    for i in range(len(keras_boxes)):
+    for i in range(len(craft_boxes)):
         struct_img = cv2.rectangle(
             struct_img,
-            (keras_boxes[i][0], keras_boxes[i][1]),
-            (keras_boxes[i][2], keras_boxes[i][3]),
-            (0, 255, 0),
+            (craft_boxes[i][0], craft_boxes[i][1]),
+            (craft_boxes[i][2], craft_boxes[i][3]),
+            (255, 0, 255),
             2,
         )
+
     print(colored("\nSaving output image with bounding boxes.", "green",))
     cv2.imwrite(f"output/{base_name}", struct_img)

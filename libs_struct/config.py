@@ -1,4 +1,4 @@
-base_dir = "TO_BE_CONFIGURED"
+upscale_weight_dir = "TO_BE_CONFIGURED"
 dataset_type = "CocoDataset"
 data_root = "TO_BE_CONFIGURED"
 img_norm_cfg = dict(mean=[127.5, 127.5, 127.5], std=[127.5, 127.5, 127.5], to_rgb=True)
