@@ -14,8 +14,4 @@ elementpath==2.5.3
 scikit-learn==1.0.2
 tabulate==0.8.10
 python-resize-image==1.1.20
-openmim==0.2.0
-mmcv-full==1.6.0
-mmcls==0.23.1
 keras-ocr==0.9.1
-mmdet==2.25.0
