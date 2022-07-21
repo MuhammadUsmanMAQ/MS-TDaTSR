@@ -1,6 +1,6 @@
 # Table Structure Recognition
 ## Usage
-1. Configure `base_dir` to the absolute path of `./MS-TDaTSR` to ensure no directory errors arise while executing `inference.py`. Only configure `data_root`, `work_dir` and other data related fields in the config if you want to train the model on a custom dataset.<br/>
+1. Configure `upscale_weight_dir` to the absolute path of `./MS-TDaTSR/models/upscale/` to ensure no directory errors arise while executing `upscale.py` as a subprocess. Only configure `data_root`, `work_dir` and other data related fields in the config if you want to train the model on a custom dataset.<br/>
 2. Download weights from the following table and place them inside the ./MS-TDaTSR/models/struct/ directory.<br/>
 #### Example usage:
 ```python
