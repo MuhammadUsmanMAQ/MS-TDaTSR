@@ -8,14 +8,14 @@
 ### Example usage:
 ```python
 python eval.py --output_dir "{PATH_TO_OUTPUT_DIRECTORY}" \
-               --model_dir "{TABLE_DETECTOR_WEIGHTS}.pth.tar" \
+               --det_weights "{TABLE_DETECTOR_WEIGHTS}.pth.tar" \
                --data_dir "{PATH_TO_INPUT_DIR}"
 ```
 5. To get model predictions for a single input image, use the script `inference.py` with the required positional arguments. Example usage:
 ```python
 python inference.py --input_img "{PATH_TO_INPUT_IMG}" \
                     --gt_dir "{PATH_TO_INPUT_MASK}" \ # Optional
-                    --model_dir "{TABLE_DETECTOR_WEIGHTS}.pth.tar" \
+                    --det_weights "{TABLE_DETECTOR_WEIGHTS}.pth.tar" \
                     --output_dir "{{PATH_TO_OUTPUT_DIRECTORY}"
 ```
 ## Models Weights
