@@ -58,3 +58,13 @@ python run.py --input_dir "{PATH_TO_INPUT_IMAGE}" \
 <p align="center">
     <p1 align="center"> <b>Note:</b> <i>Individual inference (performing either table detection or structure extraction) is also possible.</i>
 </p>
+
+## Issues
+- Machines running variants of Microsoft Windows encounter issues with mmcv imports. Follow the [installation guide](https://mmcv.readthedocs.io/en/latest/get_started/installation.html) on the official MMCV documentation to resolve such issues. Example:
+```
+ModuleNotFoundError: No module named 'mmcv._ext'
+```
+- Machinces running variants of Microsoft Windows encounter directory issues arising from OSP. Most can be resolved by using absolute path in the command line arguments rather than the relative path.
+
+
+
