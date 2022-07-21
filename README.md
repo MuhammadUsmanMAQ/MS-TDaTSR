@@ -12,6 +12,7 @@ Install the required dependencies.<br/>Environment characteristics:<br/>`python 
 ```
 pip install -r requirements.txt
 ```
+This repo uses toolboxes provided by `OpenMMLab` to train and test models. Head over to the official documentation of [MMDetection](https://github.com/open-mmlab/mmdetection) for [installation instructions](https://mmdetection.readthedocs.io/en/latest/get_started.html#installation).
 
 ## Installation / Run
 To get started, clone this repo and place the downloaded model weights of Upscale, Table Detection and Table Structure Recognition in the models directory.<br/>
