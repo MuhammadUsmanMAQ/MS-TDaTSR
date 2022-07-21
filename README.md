@@ -72,4 +72,4 @@ Special thanks to the following contributors without which this repo would not b
 1. The [MMDetection](https://github.com/open-mmlab/mmdetection) project team for creating the amazing framework to push the state of the art computer vision research and enabling us to experiment and build various models very easily.
 2. The [CRAFT](https://github.com/fcakyon/craft-text-detector) project which enabled us to perform fast and lite text detection for post-processing.
 3. The [GameUpscale](https://upscale.wiki/wiki/Main_Page) team for providing a plethora of models to upsample all kinds of images; upsampling text images for our case.
-4. [Google Colaboratory](https://github.com/googlecolab) team for providing free high end GPU resources for research and development. All of the code base was developed using Google colab and couldn't be possible without it.
+4. [Google Colaboratory](https://github.com/googlecolab) team for providing free high end GPU resources for research and development. All of the code base was developed using their platform and could not be possible without it.
