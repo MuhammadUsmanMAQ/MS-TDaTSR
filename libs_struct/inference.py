@@ -91,6 +91,7 @@ def detect_text(image, device, struct_boxes):
         temp_boxes.append(getCoords(regions[i]))
 
     craft_boxes = temp_boxes.copy()
+    ## To remove overlap between craft and structure detector, uncomment
     # for i in range(len(temp_boxes)):
     #     for k in range(len(struct_boxes)):
     #         if solve(struct_boxes[k], temp_boxes[i]) == True:
