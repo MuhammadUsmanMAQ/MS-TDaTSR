@@ -1,11 +1,11 @@
 # MS-TDaTSR
 ## Mutli-Stage - Table Detection and Table Structure Recognition
-We propose a multi-staged pipeline approach to tackle the issue of detection of tables as well as their structure within scanned document images, on the basis that the fundamental structure of bordered and borderless tables is vastly different and hence, training a single pipeline model to discern the structure of both borderless and bordered tables yields poor performance.
+We propose a multi-staged pipeline approach to tackle the issue of detection of tables as well as their structure within scanned document images, on the basis that the fundamental structure of bordered and borderless tables is vastly different and hence, training a single pipeline model to discern the structure of both borderless and bordered tables yields relatively poor performance.
 
-## Dataset
-You can download and unpack the Marmot dataset (with image masks) into `datasets/stage_one` through the following link: [Marmot Dataset](https://drive.google.com/file/d/1-7cBtAraIa0e8c6kMFDPmlAlKOPOBccd/view?usp=sharing)
-Alternatively, you could also download the larger cTDaR dataset (with image masks; Modern TRACK A) through the following link: [cTDaR](https://drive.google.com/file/d/1PTlz7aXY9r6sQOXApPKOyvsD6sjrjt5Q/view?usp=sharing)
-
+## Datasets
+- **Table Detection** - You can download and unpack the Marmot dataset (with image masks) into `datasets/stage_one` through the following link: [Marmot Dataset](https://drive.google.com/file/d/1-7cBtAraIa0e8c6kMFDPmlAlKOPOBccd/view?usp=sharing)
+Alternatively, you could also download the larger cTDaR dataset (with image masks; Modern TRACK A) through the following link: [cTDaR](https://drive.google.com/file/d/1PTlz7aXY9r6sQOXApPKOyvsD6sjrjt5Q/view?usp=sharing)<br/>
+- **Table Structure Recognition** - You can access download links to [FinTabNet](https://developer.ibm.com/exchanges/data/all/fintabnet/) from the official IBM developer website.
 ## Dependencies
 Install the required dependencies.<br/>Environment characteristics:<br/>`python = 3.7.13` `torch = 1.12.0` `cuda = 11.3` `torchvision = 0.13.0` `torchaudio = 0.12.0`
 <br/>*It is better to create a new virtual environment so that updates/downgrades of packages do not break other projects.*
@@ -67,5 +67,9 @@ ModuleNotFoundError: No module named 'mmcv._ext'
 ```
 - Machinces running variants of Microsoft Windows encounter directory issues arising from OSP. Most can be resolved by using absolute path in the command line arguments rather than the relative path.
 
-
-
+## Acknowledgements
+Special thanks to the following contributors without which this repo would not be possible:
+1. The [MMDetection](https://github.com/open-mmlab/mmdetection) project team for creating the amazing framework to push the state of the art computer vision research and enabling us to experiment and build various models very easily.
+2. The [CRAFT](https://github.com/fcakyon/craft-text-detector) project which enabled us to perform fast and lite text detection for post-processing.
+3. The [GameUpscale](https://upscale.wiki/wiki/Main_Page) team for providing a plethora of models to upscaling all kinds of images; upscaling text images for our case.
+4. [Google Colaboratory](https://github.com/googlecolab) team for providing free high end GPU resources for research and development. All of the code base was developed using their platform and could not be possible without it.
