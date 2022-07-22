@@ -13,8 +13,7 @@ We propose a multi-staged pipeline approach to tackle the issue of detection of 
    <a href="https://numpy.org/"><img width="90" height="25" src="https://img.shields.io/badge/OpenCV-27338e?flat&logo=OpenCV&logoColor=white"/></a>
    <a href="https://numpy.org/"><img width="90" height="25" src="https://img.shields.io/badge/numpy-%23013243.svg?style=flat&logo=numpy&logoColor=white"/></a>
    <a href="https://www.python.org/"><img width="90" height="25" src="https://img.shields.io/badge/python-3670A0?style=flat&logo=python&logoColor=ffdd54"/></a>
-   <a href="#"><img width="155" height="25" img src="https://kaggle.com/static/images/open-in-kaggle.svg" alt="Demo"/></a>
-   <a href="#"><img width="150" height="25" img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Demo"/></a>
+   <a href="#"><img width="145" height="25" img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Demo"/></a>
 </p>
 
 ## Datasets
