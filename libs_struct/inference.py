@@ -211,5 +211,5 @@ if __name__ == "__main__":
             2,
         )
 
-    print(colored("\nSaving output image with bounding boxes.", "green",))
+    print(colored(f"\nSaving output image {base_name} with bounding boxes.", "green",))
     cv2.imwrite(f"output/{base_name}", struct_img)
