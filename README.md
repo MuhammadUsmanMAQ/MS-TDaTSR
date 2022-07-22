@@ -89,7 +89,7 @@ ModuleNotFoundError: No module named 'mmcv._ext'
 </p>
 
 2. The [CRAFT](https://github.com/clovaai/CRAFT-pytorch) paper implementation which enabled us to perform fast and lite text detection during post-processing.
-3. The [GameUpscale](https://upscale.wiki/wiki/Main_Page) team for providing a plethora of models to upscaling all kinds of images; upscaling text images for our case.
+3. The [GameUpscale](https://upscale.wiki/wiki/Main_Page) team for providing a plethora of models to upscale all kinds of images; upscaling text images for our case.
 <p align="center">
    <a href="#"><img width="100" height="100" src="https://styles.redditmedia.com/t5_t2w6c/styles/communityIcon_lslg93wlmah31.png?width=256&s=3163c0903846807d8609680be18368a0a7eef05b"/></a>
 </p>
