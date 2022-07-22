@@ -180,10 +180,11 @@ if __name__ == "__main__":
 
     struct_img = ori_img.copy()
     checkpoint_file = args.struct_weights
+    config_name = osp.basename(checkpoint_file)[:-13] + ".py"
 
     # MMDet Pipeline
     struct_boxes = detect_structure(
-        struct_img, "config.py", checkpoint_file, device, 0.7
+        struct_img, osp.join("configs/", config_name), checkpoint_file, device, 0.5
     )
 
     # Keras Pipeline

@@ -1,4 +1,3 @@
-upscale_weight_dir = "TO_BE_CONFIGURED"
 dataset_type = "CocoDataset"
 data_root = "TO_BE_CONFIGURED"
 img_norm_cfg = dict(mean=[127.5, 127.5, 127.5], std=[127.5, 127.5, 127.5], to_rgb=True)
@@ -300,6 +299,7 @@ custom_imports = dict(imports=["mmcls.models"], allow_failed_imports=False)
 crop_size = None
 classes = ("cell",)
 work_dir = "TO_BE_CONFIGURED"
+upscale_weight_dir = "TO_BE_CONFIGURED"
 device = "cuda"
 seed = 0
 gpu_ids = range(0, 1)
