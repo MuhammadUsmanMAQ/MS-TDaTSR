@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="#"><img width="160" height="25" src="./resources/status-in progress-critical.svg"/></a>
+   <a href="#"><img width="160" height="25" src="./resources/status-in progress-critical.svg"/></a>
    <a href="#"><img width="105" height="25" src="./resources/unfunctional-blue.svg"/></a><br/>
 </p>
 
@@ -8,12 +8,12 @@
 We propose a multi-staged pipeline approach to tackle the issue of detection of tables as well as their structure within scanned document images, on the basis that the fundamental structure of bordered and borderless tables is vastly different and hence, training a single pipeline model to discern the structure of both borderless and bordered tables yields relatively poor performance.
 
 <p align="center">
-   <a href="#"><img width="110" height="30" src="https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54"/></a>
-   <a href="#"><img width="120" height="30" src="https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?style=for-the-badge&logo=PyTorch&logoColor=white"/></a>
-   <a href="#"><img width="100" height="30" src="https://img.shields.io/badge/numpy-%23013243.svg?style=for-the-badge&logo=numpy&logoColor=white"/></a>
-   <a href="#"><img width="100" height="30" src="https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white"/></a>
+   <a href="https://www.python.org/"><img width="110" height="30" src="https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54"/></a>
+   <a href="https://pytorch.org/"><img width="110" height="30" src="https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?style=for-the-badge&logo=PyTorch&logoColor=white"/></a>
+   <a href="https://numpy.org/"><img width="100" height="30" src="https://img.shields.io/badge/numpy-%23013243.svg?style=for-the-badge&logo=numpy&logoColor=white"/></a>
+   <a href="https://pandas.pydata.org/"><img width="100" height="30" src="https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white"/></a>
    <a href="#">
-    <img width="170" height="28" img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Demo"/></a>
+   <img width="170" height="28" img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Demo"/></a>
 </p>
 
 ## Datasets
@@ -90,7 +90,6 @@ ModuleNotFoundError: No module named 'mmcv._ext'
 
 2. The [CRAFT](https://github.com/clovaai/CRAFT-pytorch) paper implementation which enabled us to perform fast and lite text detection during post-processing.
 3. The [GameUpscale](https://upscale.wiki/wiki/Main_Page) team for providing a plethora of models to upscaling all kinds of images; upscaling text images for our case.
-
 <p align="center">
    <a href="#"><img width="100" height="100" src="https://styles.redditmedia.com/t5_t2w6c/styles/communityIcon_lslg93wlmah31.png?width=256&s=3163c0903846807d8609680be18368a0a7eef05b"/></a>
 </p>
