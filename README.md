@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="180" height="30" src="./resources/status-in progress-critical.svg">
+  <a href="#"><img width="180" height="30" src="./resources/status-in progress-critical.svg"/></a>
 </p>
 
 # MS-TDaTSR
