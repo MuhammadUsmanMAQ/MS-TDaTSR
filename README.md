@@ -1,10 +1,20 @@
 <p align="center">
-  <a href="#"><img width="180" height="30" src="./resources/status-in progress-critical.svg"/></a>
+  <a href="#"><img width="160" height="25" src="./resources/status-in progress-critical.svg"/></a>
+   <a href="#"><img width="105" height="25" src="./resources/unfunctional-blue.svg"/></a><br/>
 </p>
 
 # MS-TDaTSR
 ## Mutli-Stage - Table Detection and Table Structure Recognition
 We propose a multi-staged pipeline approach to tackle the issue of detection of tables as well as their structure within scanned document images, on the basis that the fundamental structure of bordered and borderless tables is vastly different and hence, training a single pipeline model to discern the structure of both borderless and bordered tables yields relatively poor performance.
+
+<p align="center">
+   <a href="#"><img width="110" height="30" src="https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54"/></a>
+   <a href="#"><img width="120" height="30" src="https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?style=for-the-badge&logo=PyTorch&logoColor=white"/></a>
+   <a href="#"><img width="100" height="30" src="https://img.shields.io/badge/numpy-%23013243.svg?style=for-the-badge&logo=numpy&logoColor=white"/></a>
+   <a href="#"><img width="100" height="30" src="https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white"/></a>
+   <a href="#">
+    <img width="170" height="28" img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Demo"/></a>
+</p>
 
 ## Datasets
 - **Table Detection** - You can download and unpack the Marmot dataset (with image masks) into `datasets/stage_one` through the following link: [Marmot Dataset](https://drive.google.com/file/d/1-7cBtAraIa0e8c6kMFDPmlAlKOPOBccd/view?usp=sharing)
@@ -72,8 +82,17 @@ ModuleNotFoundError: No module named 'mmcv._ext'
 - Machinces running variants of Microsoft Windows encounter directory issues arising from OSP. Most can be resolved by using absolute path in the command line arguments rather than the relative path.
 
 ## Acknowledgements
-Special thanks to the following contributors without which this repo would not be possible:
-1. The [MMDetection](https://github.com/open-mmlab/mmdetection) project team for creating the amazing framework to push the state of the art computer vision research and enabling us to experiment and build various models very easily.
-2. The [CRAFT](https://github.com/fcakyon/craft-text-detector) project which enabled us to perform fast and lite text detection for post-processing.
+**Special thanks to the following contributors without which this repo would not be possible:**
+1. The [MMDetection](https://github.com/open-mmlab/mmdetection) team for creating their amazing framework to push the state of the art computer vision research and enabling us to experiment and build various models very easily.
+<p align="center">
+   <a href="https://github.com/open-mmlab/mmdetection"><img width="300" height="100" src="https://raw.githubusercontent.com/open-mmlab/mmdetection/master/resources/mmdet-logo.png"/></a>
+</p>
+
+2. The [CRAFT](https://github.com/clovaai/CRAFT-pytorch) paper implementation which enabled us to perform fast and lite text detection during post-processing.
 3. The [GameUpscale](https://upscale.wiki/wiki/Main_Page) team for providing a plethora of models to upscaling all kinds of images; upscaling text images for our case.
-4. [Google Colaboratory](https://github.com/googlecolab) team for providing free high end GPU resources for research and development. All of the code base was developed using their platform and could not be possible without it.
+
+<p align="center">
+   <a href="#"><img width="100" height="100" src="https://styles.redditmedia.com/t5_t2w6c/styles/communityIcon_lslg93wlmah31.png?width=256&s=3163c0903846807d8609680be18368a0a7eef05b"/></a>
+</p>
+   
+4. [Google Colaboratory](https://github.com/googlecolab) for providing free high end GPU resources for research and development. All of the code base was developed using their platform and could not be possible without it.
