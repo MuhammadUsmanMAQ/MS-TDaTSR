@@ -15,8 +15,13 @@ _All structure recognition models have been trained and evaluated on a custom ve
 | Model | Weights | Schedule |AP <sup>@ IoU=0.50</sup> | AP <sup>@ IoU=0.75</sup> | AP <sup>@ IoU=0.50:0.95</sup> |
 | :---: | :---: | :---: | :---: | :---: | :---: |
 | Grid RCNN | [Download](https://drive.google.com/file/d/15xCFjnmmCj0aQlVQ6-U-bh0eICeUIWIc/view?usp=sharing) | 12 Epochs | 0.956 | 0.933 | 0.901 |
+| VarifocalNet | [Download](https://drive.google.com/file/d/16-hCk9EDXt9e0uHfrTrA-ExY__mCt2DW/view?usp=sharing) | 15 Epochs | 0.921 | 0.895 | 0.877 |
 
 ## **Directory Descriptions**
+
+- ### Configs Directory<br/>
+**Major Directory** - Contains different architectures referencing the struct_weights argument. All weights `.pth` files are named as `{arch_name}_{lr_sched}_{ckpt}.pth` and configs are thereby named as `{arch_name}.py`.<br/>
+**Note** - `inference.py` automatically chooses the config that matches the struct_weight argument. If you are using a different naming convention, you will need to tinker with the source code of `inference.py` so that the appropriate config is chosen.
 
 - ### Input Directory<br/>
 **Created upon Execution** - Contains the original input image passed as a command line argument to `inference.py`. 
