@@ -15,6 +15,7 @@ _All structure recognition models have been trained and evaluated on a custom ve
 | Model | Weights | Schedule |AP <sup>@ IoU=0.50</sup> | AP <sup>@ IoU=0.75</sup> | AP <sup>@ IoU=0.50:0.95</sup> |
 | :---: | :---: | :---: | :---: | :---: | :---: |
 | Grid RCNN | [Download](https://drive.google.com/file/d/15xCFjnmmCj0aQlVQ6-U-bh0eICeUIWIc/view?usp=sharing) | 12 Epochs | 0.956 | 0.933 | 0.901 |
+| VarifocalNet | [Download](https://drive.google.com/file/d/16-hCk9EDXt9e0uHfrTrA-ExY__mCt2DW/view?usp=sharing) | 15 Epochs | 0.921 | 0.895 | 0.877 |
 
 ## **Directory Descriptions**
 
