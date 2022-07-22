@@ -8,6 +8,7 @@
 We propose a multi-staged pipeline approach to tackle the issue of detection of tables as well as their structure within scanned document images, on the basis that the fundamental structure of bordered and borderless tables is vastly different and hence, training a single pipeline model to discern the structure of both borderless and bordered tables yields relatively poor performance.
 
 <p align="center">
+   <br>
    <a href="https://pytorch.org/"><img width="95" height="25" src="https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?style=flat&logo=PyTorch&logoColor=white"/></a>
    <!--- <a href="https://pandas.pydata.org/"><img width="90" height="25" src="https://img.shields.io/badge/pandas-%23150458.svg?style=flat&logo=pandas&logoColor=white"/></a> -->
    <a href="https://numpy.org/"><img width="90" height="25" src="https://img.shields.io/badge/OpenCV-27338e?flat&logo=OpenCV&logoColor=white"/></a>
