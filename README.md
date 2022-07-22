@@ -8,12 +8,13 @@
 We propose a multi-staged pipeline approach to tackle the issue of detection of tables as well as their structure within scanned document images, on the basis that the fundamental structure of bordered and borderless tables is vastly different and hence, training a single pipeline model to discern the structure of both borderless and bordered tables yields relatively poor performance.
 
 <p align="center">
-  <a href="https://www.python.org/"><img width="95" height="25" src="https://img.shields.io/badge/python-3670A0?style=flat&logo=python&logoColor=ffdd54"/></a>
-  <a href="https://pytorch.org/"><img width="95" height="25" src="https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?style=flat&logo=PyTorch&logoColor=white"/></a>
-  <a href="https://numpy.org/"><img width="90" height="25" src="https://img.shields.io/badge/numpy-%23013243.svg?style=flat&logo=numpy&logoColor=white"/></a>
-  <a href="https://pandas.pydata.org/"><img width="90" height="25" src="https://img.shields.io/badge/pandas-%23150458.svg?style=flat&logo=pandas&logoColor=white"/></a>
-  <a href="#">
-  <img width="150" height="25" img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Demo"/></a>
+   <a href="https://pytorch.org/"><img width="95" height="25" src="https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?style=flat&logo=PyTorch&logoColor=white"/></a>
+   <!--- <a href="https://pandas.pydata.org/"><img width="90" height="25" src="https://img.shields.io/badge/pandas-%23150458.svg?style=flat&logo=pandas&logoColor=white"/></a> -->
+   <a href="https://numpy.org/"><img width="90" height="25" src="https://img.shields.io/badge/OpenCV-27338e?flat&logo=OpenCV&logoColor=white"/></a>
+   <a href="https://numpy.org/"><img width="90" height="25" src="https://img.shields.io/badge/numpy-%23013243.svg?style=flat&logo=numpy&logoColor=white"/></a>
+   <a href="https://www.python.org/"><img width="90" height="25" src="https://img.shields.io/badge/python-3670A0?style=flat&logo=python&logoColor=ffdd54"/></a>
+   <a href="#"><img width="155" height="25" img src="https://kaggle.com/static/images/open-in-kaggle.svg" alt="Demo"/></a>
+   <a href="#"><img width="150" height="25" img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Demo"/></a>
 </p>
 
 ## Datasets
