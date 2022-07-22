@@ -18,6 +18,10 @@ _All structure recognition models have been trained and evaluated on a custom ve
 
 ## **Directory Descriptions**
 
+- ### Configs Directory<br/>
+**Major Directory** - Contains different architectures referencing the struct_weights argument. All weights `.pth` files are named as `{arch_name}_{lr_sched}_{ckpt}.pth` and configs are thereby named as `{arch_name}.py`.<br/>
+**Note** - `inference.py` automatically chooses the config that matches the struct_weight argument. If you are using a different naming convention, you will need to tinker with the source code of `inference.py` so that the appropriate config is chosen.
+
 - ### Input Directory<br/>
 **Created upon Execution** - Contains the original input image passed as a command line argument to `inference.py`. 
 Useful in comparing original image with the upscaled image.
