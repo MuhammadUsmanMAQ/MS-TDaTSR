@@ -1,8 +1,9 @@
 # Table Detection
 ## Usage
-1. Configure `base_dir` and `data_dir` in `config.py` and run `data.py` to ensure data is being loaded correctly.
-2. To make changes to the model _(i.e. changing the encoder, using ConvNeXt instead of ResNet, etc.)_, configure `encoder/decoder` in `config.py`.
-3. To train the model, configure the training hyperparameters in `config.py` and run `train.py`.
+1. Configure `base_dir` and `data_dir` in `configs/directories.py` to the absolute paths to ensure no directory errors arise during training/testing.
+2. Run `data.py` to ensure data is being loaded correctly.
+2. Configure `encoder/decoder` in `configs/config.py` to match the downloaded weights file.<br/>Example: `TD-ConvNeXt-T` implies `Encoder: ConvNeXt` and `CNDecoder`.
+3. To train the model, configure the training hyperparameters in `configs/config.py` and execute `train.py`.
 4. Download weights from the following table and place them inside the ./MS-TDaTSR/models/det/ directory
 5. To evaluate the model on a test dataset, use the script `eval.py` with the required positional arguments.
 ### Example usage:
