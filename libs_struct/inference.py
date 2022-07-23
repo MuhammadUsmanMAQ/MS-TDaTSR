@@ -195,7 +195,6 @@ if __name__ == "__main__":
     checkpoint_file = args.struct_weights
     config_name = osp.basename(checkpoint_file)[:-13] + ".py"
 
-    print
     # MMDet Pipeline
     struct_boxes = detect_structure(
         struct_img, osp.join("configs/", config_name), checkpoint_file, device, 0.6
