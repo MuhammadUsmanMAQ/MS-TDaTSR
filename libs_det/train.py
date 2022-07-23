@@ -1,10 +1,9 @@
 import time
 import torch
-import torch.nn as nn
 import torch.optim as optim
 from tqdm import tqdm
 import numpy as np
-import config
+from configs import config
 import os
 from termcolor import colored
 
@@ -17,21 +16,19 @@ from utils import (
     compute_metrics,
     seed_all,
 )
-from loss import TDLoss
+from utils.loss import TDLoss
 from sklearn.metrics import precision_score, recall_score, accuracy_score, f1_score
-from model import TDModel
+from architectures.model import TDModel
 from torch.utils.tensorboard import SummaryWriter
 from pytorch_model_summary import summary
 import argparse
-import sys
-import warnings
-
-warnings.filterwarnings("ignore")
 
 """
     Common train functions imported/edited from TabNet-pytorch Git repo
     https://github.com/asagar60/TableNet-pytorch/blob/main/Training/train.py
 """
+
+
 def train_on_epoch(data_loader, model, optimizer, loss, scaler, threshold=0.5):
 
     combined_loss = []

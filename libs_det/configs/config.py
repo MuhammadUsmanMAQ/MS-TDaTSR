@@ -4,6 +4,7 @@
 """
 import torch
 from datetime import datetime
+from configs.directories import data_dir, base_dir
 
 """ 
     Parameters for stage 1
@@ -14,7 +15,6 @@ lr = 0.0001
 epochs = 30
 batch_size = 2
 weight_decay = 3e-4
-base_dir = "TO_BE_CONFIGURED"
 run_id = datetime.now().strftime("%H%M%S")
 
 """
@@ -27,8 +27,3 @@ run_id = datetime.now().strftime("%H%M%S")
 encoder = "ConvNext-small"
 decoder = "CNDecoder"
 loss = "DiceLoss"
-
-"""
-    Base Directory to locate images/masks
-"""
-data_dir = f"{base_dir}/datasets/ctdar/train/locate.csv"

@@ -1,10 +1,8 @@
-import torch
 import torch.nn as nn
-import torchvision
-from encoder import ResNet, ConvNext, EfficientNet
-from decoder import RNDecoder, CNDecoder, ENDecoder
+from architectures.encoder import ResNet, ConvNext, EfficientNet
+from architectures.decoder import RNDecoder, CNDecoder, ENDecoder
 from torchinfo import summary
-import config
+from configs.config import encoder, decoder
 
 
 """
@@ -15,8 +13,8 @@ import config
 class TDModel(nn.Module):
     def __init__(
         self,
-        encoder=config.encoder,
-        decoder=config.decoder,
+        encoder=encoder,
+        decoder=decoder,
         use_pretrained_model=True,
         basemodel_requires_grad=True,
     ):
@@ -222,10 +220,3 @@ class TDModel(nn.Module):
         table_out = self.table_decoder(conv_out, pool_3_out, pool_4_out)
 
         return table_out
-
-
-if __name__ == "__main__":
-    x = torch.randn(1, 3, 1024, 768)
-    model = TDModel(use_pretrained_model=True, basemodel_requires_grad=True)
-    model(x)
-    summary(model, input_size=(1, 3, 1024, 768))

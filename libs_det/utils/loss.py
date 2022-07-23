@@ -1,7 +1,7 @@
-import torch
 import torch.nn as nn
-import config
+from configs import config
 from segmentation_models_pytorch import losses
+
 
 class TDLoss(losses.DiceLoss):
     def __init__(self, loss=config.loss):

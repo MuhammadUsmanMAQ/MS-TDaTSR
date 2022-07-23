@@ -1,11 +1,9 @@
-import config
-from train import test_on_epoch
-from loss import TDLoss
-from utils import get_data_loaders
-from model import TDModel
+from warnings import simplefilter
 
-from utils import (
-    get_data_loaders,
+simplefilter("ignore")
+from configs import config
+from architectures.model import TDModel
+from utils.utils import (
     load_checkpoint,
     save_fig,
     save_fig_gt,
@@ -14,17 +12,13 @@ from utils import (
     resize_padding,
 )
 
-import json
 import argparse
 import torch
-import csv
 import cv2
 import os
 import matplotlib.pyplot as plt
 from PIL import Image
 import numpy as np
-from datetime import datetime
-from tqdm import tqdm
 
 """
     Evaluate Model

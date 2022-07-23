@@ -12,7 +12,7 @@ from PIL import Image, ImageOps
 from torch.utils.data import DataLoader
 import albumentations as A
 from albumentations.pytorch import ToTensorV2
-import config  # Contatining vars relevant to the Dataloader
+from configs import config
 
 """
     Setting up the Dataset class in the way
@@ -75,6 +75,8 @@ if __name__ == "__main__":
 
     dataset = Dataset(train_data)
     train_loader = DataLoader(dataset, batch_size=config.batch_size)
+
+    print("Loading first three images & masks.")
 
     for (i, img_dict) in zip(range(3), train_loader):  # Iterate only thrice
         image, table_image = img_dict["image"], img_dict["table_mask"]

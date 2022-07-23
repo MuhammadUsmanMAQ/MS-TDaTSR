@@ -4,10 +4,9 @@ from PIL import Image
 import numpy as np
 import os
 import pandas as pd
-import config
+from configs import config
 import cv2
 import matplotlib.pyplot as plt
-import matplotlib.gridspec as gridspec
 from data import Dataset
 from torch.utils.data import DataLoader
 from sklearn.model_selection import train_test_split
@@ -210,8 +209,8 @@ def get_masks(test_img, model, transform=TRANSFORM, device=config.device):
     ).astype(int)
     table_out = table_out.reshape(1024, 768).astype(np.uint8)
 
-    kernel = np.ones((5, 5), np.uint8)
-    table_out = cv2.erode(table_out, kernel, iterations=2)
+    kernel = np.ones((21, 2), np.uint8)
+    table_out = cv2.erode(table_out, kernel, iterations=1)
     table_out = cv2.dilate(table_out, kernel, iterations=1)
 
     return table_out

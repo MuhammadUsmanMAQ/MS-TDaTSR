@@ -4,8 +4,6 @@
 """
 import torch
 import torch.nn as nn
-import torchvision
-from torchinfo import summary
 from torchvision.models import (
     efficientnet_b0,
     efficientnet_b1,
@@ -20,12 +18,9 @@ from torchvision.models import (
     convnext_large,
 )
 from torchvision.models import resnet50, resnet101
-from torchvision.models.feature_extraction import get_graph_node_names
 from torchvision.models.feature_extraction import create_feature_extractor
-from torchvision.models.detection.mask_rcnn import MaskRCNN
 from torchvision.models.detection.backbone_utils import LastLevelMaxPool
 from torchvision.ops.feature_pyramid_network import FeaturePyramidNetwork
-
 
 """
     Encoder definition
