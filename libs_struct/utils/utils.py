@@ -5,7 +5,7 @@ import cv2
 import numpy as np
 import torch
 import torch.nn.functional as F
-from .colors import *
+from utils.colors import *
 
 try:
     import rawpy
@@ -823,5 +823,24 @@ def solve(R1, R2):
         return True
 
 
+# Functions to manipulate bounding boxes: [xmin, ymin, xmax, ymax]
+def getHeight(box):
+    return box[3] - box[1]
+
+
+def getWidth(box):
+    return box[2] - box[0]
+
+
 def getArea(box):
     return (box[2] - box[0]) * (box[3] - box[1])
+
+
+def getNearness(a, b):
+    difference = abs(a - b)
+
+    if difference == 0 or difference < 20:
+        return True
+
+    else:
+        return False

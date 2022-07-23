@@ -1,5 +1,8 @@
+from configs.directories import upscale_weight_dir, data_root, work_dir
+import os.path as osp
+
 dataset_type = "CocoDataset"
-data_root = "TO_BE_CONFIGURED"
+data_root = data_root
 img_norm_cfg = dict(mean=[127.5, 127.5, 127.5], std=[127.5, 127.5, 127.5], to_rgb=True)
 train_pipeline = [
     dict(type="LoadImageFromFile"),
@@ -7,9 +10,10 @@ train_pipeline = [
     dict(
         type="Resize",
         img_scale=[(1333, 768), (1024, 512), (896, 896), (768, 1333), (512, 1024)],
-        multiscale_mode="range",
+        multiscale_mode="value",
         keep_ratio=True,
     ),
+    dict(type="RandomFlip", flip_ratio=0.0),
     dict(
         type="Normalize",
         mean=[127.5, 127.5, 127.5],
@@ -46,8 +50,8 @@ data = dict(
     workers_per_gpu=2,
     train=dict(
         type="CocoDataset",
-        ann_file="TO_BE_CONFIGURED/train/_annotations.coco.json",
-        img_prefix="TO_BE_CONFIGURED/train/",
+        ann_file=osp.join(data_root, "train/_annotations.coco.json"),
+        img_prefix=osp.join(data_root, "train/"),
         pipeline=[
             dict(type="LoadImageFromFile"),
             dict(type="LoadAnnotations", with_bbox=True),
@@ -67,8 +71,8 @@ data = dict(
     ),
     val=dict(
         type="CocoDataset",
-        ann_file="TO_BE_CONFIGURED/valid/_annotations.coco.json",
-        img_prefix="TO_BE_CONFIGURED/valid/",
+        ann_file=osp.join(data_root, "valid/_annotations.coco.json"),
+        img_prefix=osp.join(data_root, "valid/"),
         pipeline=[
             dict(type="LoadImageFromFile"),
             dict(
@@ -94,8 +98,8 @@ data = dict(
     ),
     test=dict(
         type="CocoDataset",
-        ann_file="TO_BE_CONFIGURED/valid/_annotations.coco.json",
-        img_prefix="TO_BE_CONFIGURED/valid/",
+        ann_file=osp.join(data_root, "valid/_annotations.coco.json"),
+        img_prefix=osp.join(data_root, "valid/"),
         pipeline=[
             dict(type="LoadImageFromFile"),
             dict(
@@ -298,8 +302,8 @@ runner = dict(type="EpochBasedRunner", max_epochs=30)
 custom_imports = dict(imports=["mmcls.models"], allow_failed_imports=False)
 crop_size = None
 classes = ("cell",)
-work_dir = "TO_BE_CONFIGURED"
-upscale_weight_dir = "TO_BE_CONFIGURED"
+work_dir = work_dir
+upscale_weight_dir = upscale_weight_dir
 device = "cuda"
 seed = 0
 gpu_ids = range(0, 1)

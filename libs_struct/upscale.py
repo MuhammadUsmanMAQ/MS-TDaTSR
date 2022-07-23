@@ -21,7 +21,8 @@ from utils.utils import (
 )
 from utils.defaults import get_network_G_config
 from architectures import get_network
-from config import upscale_weight_dir
+
+from configs.directories import upscale_weight_dir
 
 
 class nullcast:
@@ -260,7 +261,7 @@ def parse_models(models_paths, scales_list=None):
         models_paths.split("+") if "+" in models_paths else models_paths.split(">")
     )
 
-    all_models = get_models_paths(osp.abspath(upscale_weight_dir))
+    all_models = get_models_paths(upscale_weight_dir)
 
     full_chain = []
     for model_path in model_chain:
