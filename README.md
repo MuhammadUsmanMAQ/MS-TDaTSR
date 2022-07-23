@@ -87,8 +87,8 @@ ModuleNotFoundError: No module named 'mmcv._ext'
 
 ```TypeScript
 Error(s) in loading state_dict for TDModel; Missing key(s) in state_dict
-Resolution: Configure encoder/decoder to match the downloaded weights file in `libs_det/configs/config.py`.
 ```
+&ensp;Resolve it by configuring `encoder/decoder` fields in `libs_det/configs/config.py` to match the downloaded weights file.
 
 ## Acknowledgements
 **Special thanks to the following contributors without which this repo would not be possible:**
