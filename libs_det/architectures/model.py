@@ -9,7 +9,6 @@ from configs.config import encoder, decoder
     Model Definition
 """
 
-
 class TDModel(nn.Module):
     def __init__(
         self,

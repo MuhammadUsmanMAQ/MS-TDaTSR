@@ -1,7 +1,3 @@
-""" 
-    Common library imports for training
-        a model through pytorch 
-"""
 import os
 import torch
 import torch.nn as nn

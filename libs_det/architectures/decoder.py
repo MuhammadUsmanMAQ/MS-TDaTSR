@@ -1,17 +1,11 @@
-""" 
-    Common library imports for training
-        a model through pytorch 
-"""
 import torch
 import torch.nn as nn
 import torchvision
 from torchinfo import summary
 
-
 """
     ConvNext Decoder
 """
-
 
 class CNDecoder(nn.Module):
     def __init__(self, channels, kernels, strides):
@@ -76,11 +70,9 @@ class CNDecoder(nn.Module):
 
         return out
 
-
 """
     ResNet Decoder
 """
-
 
 class RNDecoder(nn.Module):
     def __init__(self, channels, kernels, strides):
@@ -140,11 +132,9 @@ class RNDecoder(nn.Module):
 
         return out
 
-
 """
     EfficientNet Decoder
 """
-
 
 class ENDecoder(nn.Module):
     def __init__(self, channels, kernels, strides):

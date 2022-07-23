@@ -1,7 +1,3 @@
-""" 
-    Common library imports for training
-        a model through pytorch 
-"""
 import torch
 import torch.nn as nn
 from torchvision.models import (
@@ -25,7 +21,6 @@ from torchvision.ops.feature_pyramid_network import FeaturePyramidNetwork
 """
     Encoder definition
 """
-
 
 class ConvNext(nn.Module):
     def __init__(self, scale="small", pretrained=True, requires_grad=True):
