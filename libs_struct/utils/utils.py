@@ -839,7 +839,7 @@ def getArea(box):
 def getNearness(a, b):
     difference = abs(a - b)
 
-    if difference == 0 or difference < 20:
+    if difference == 0 or difference < 22:
         return True
 
     else:
