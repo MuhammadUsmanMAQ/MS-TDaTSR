@@ -1,6 +1,6 @@
 <p align="center">
-   <a href="#"><img width="160" height="25" src="./resources/status-in progress-critical.svg"/></a>
-   <a href="#"><img width="105" height="25" src="./resources/unfunctional-blue.svg"/></a><br/>
+   <a href="#"><img width="140" height="25" src="./resources/status-in progress-critical.svg"/></a>
+   <a href="#"><img width="95" height="25" src="./resources/unfunctional-blue.svg"/></a><br/>
 </p>
 
 # MS-TDaTSR
@@ -13,7 +13,7 @@ We propose a multi-staged pipeline approach to tackle the issue of detection of 
    <!--- <a href="https://pandas.pydata.org/"><img width="90" height="25" src="https://img.shields.io/badge/pandas-%23150458.svg?style=flat&logo=pandas&logoColor=white"/></a> -->
    <a href="https://numpy.org/"><img width="90" height="25" src="https://img.shields.io/badge/OpenCV-27338e?flat&logo=OpenCV&logoColor=white"/></a>
    <a href="https://numpy.org/"><img width="90" height="25" src="https://img.shields.io/badge/numpy-%23013243.svg?style=flat&logo=numpy&logoColor=white"/></a>
-   <a href="https://www.python.org/"><img width="90" height="25" src="https://img.shields.io/badge/python-3670A0?style=flat&logo=python&logoColor=ffdd54"/></a>
+   <a href="https://www.python.org/"><img width="85" height="25" src="https://img.shields.io/badge/python-3670A0?style=flat&logo=python&logoColor=ffdd54"/></a>
    <a href="#"><img width="145" height="25" img src="resources/open-in-colab.svg" alt="Demo"/></a>
 </p>
 
