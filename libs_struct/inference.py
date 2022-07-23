@@ -225,10 +225,10 @@ if __name__ == "__main__":
             2,
         )
 
-    merged_boxes = list()
-    # merged_boxes = struct_boxes.copy()
-    for i in range(len(craft_boxes)):
-        merged_boxes.append(craft_boxes[i])
+    # merged_boxes = list()
+    merged_boxes = struct_final.copy()
+    for i in range(len(craft_final)):
+        merged_boxes.append(craft_final[i])
 
     file = open(f"output/{base_name[:-4]}/bbox_coords.txt", "w")
     for k in range(len(merged_boxes)):
