@@ -77,10 +77,18 @@ python run.py --input_dir "{PATH_TO_INPUT_IMAGE}" \
 
 ## Issues
 - Machines running variants of Microsoft Windows encounter issues with mmcv imports. Follow the [installation guide](https://mmcv.readthedocs.io/en/latest/get_started/installation.html) on the official MMCV documentation to resolve such issues. Example:
-```
+
+```TypeScript
 ModuleNotFoundError: No module named 'mmcv._ext'
 ```
+
 - Machinces running variants of Microsoft Windows encounter directory issues arising from OSP. Most can be resolved by using absolute path in the command line arguments rather than the relative path.
+- For table detection, if you get an error of the following form:
+
+```TypeScript
+Error(s) in loading state_dict for TDModel; Missing key(s) in state_dict
+Resolution: Configure encoder/decoder to match the downloaded weights file in `libs_det/configs/config.py`.
+```
 
 ## Acknowledgements
 **Special thanks to the following contributors without which this repo would not be possible:**
